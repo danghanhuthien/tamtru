@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Đăng ký tạm trú trực tuyến - Công an Phường Thuận Hóa</title>
+<title>Hướng dẫn đăng ký cấp biển số xe - Dịch vụ công Bộ Công An</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: Arial, sans-serif; font-size: 14px; color: #333; background: #fff; }
@@ -15,7 +15,6 @@ a { text-decoration: none; color: inherit; }
   border-bottom: 1px solid #e0e0e0;
   position: sticky; top: 0; z-index: 100;
 }
-/* ✅ THÊM MỚI: wrapper căn giữa giống footer-inner và main */
 .header-inner {
   max-width: 1100px;
   margin: 0 auto;
@@ -82,21 +81,6 @@ a { text-decoration: none; color: inherit; }
 .page-title { font-size: 23px; font-weight: bold; color: #111; line-height: 1.35; }
 .page-subtitle { font-size: 14px; color: #555; margin-bottom: 24px; padding-left: 48px; }
 .page-subtitle strong { color: #c0392b; font-style: italic; }
-
-/* ===== METHOD TABS ===== */
-.method-tabs { display: flex; gap: 6px; margin-bottom: 24px; }
-.method-tab {
-  padding: 11px 28px;
-  font-size: 13px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 5px;
-  letter-spacing: 0.3px;
-  border: 1.5px solid transparent;
-  transition: all 0.15s;
-}
-.method-tab.active { background: #c0392b; color: #fff; }
-.method-tab:not(.active) { background: #f5f5f5; color: #666; border-color: #ddd; }
 
 /* ===== LINK CARD ===== */
 .link-card {
@@ -165,63 +149,99 @@ a { text-decoration: none; color: inherit; }
   margin-bottom: 22px;
 }
 .step-panel.active { display: block; }
-.step-heading { font-size: 14px; font-weight: bold; color: #222; margin-bottom: 10px; }
-.step-prepare { font-size: 13px; font-weight: bold; color: #c0392b; margin-bottom: 8px; }
+.step-heading { font-size: 14px; font-weight: bold; color: #222; margin-bottom: 14px; }
 .step-list { list-style: none; padding-left: 0; margin-bottom: 12px; }
 .step-list li {
   font-size: 13px; color: #333;
-  margin-bottom: 7px;
-  padding-left: 16px;
+  margin-bottom: 9px;
+  padding-left: 18px;
   position: relative;
-  line-height: 1.65;
+  line-height: 1.7;
 }
-.step-list li::before { content: "•"; position: absolute; left: 0; }
-.step-text { font-size: 13px; color: #333; line-height: 1.7; margin-bottom: 6px; }
+.step-list li::before { content: "•"; position: absolute; left: 0; color: #c0392b; font-size: 16px; line-height: 1.4; }
+.step-text { font-size: 13px; color: #333; line-height: 1.7; margin-bottom: 8px; }
 .step-text a { color: #1565c0; }
-.dl-btn {
-  display: inline-flex; align-items: center; gap: 4px;
-  background: #e8f0fe; border: 1px solid #90b8f8; color: #1a56db;
-  padding: 2px 10px; border-radius: 4px; font-size: 12px; cursor: pointer;
-  margin-left: 5px; vertical-align: middle;
+
+/* ===== SUB-STEP (mini step inside a panel) ===== */
+.sub-steps { margin-top: 6px; }
+.sub-step {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 20px;
 }
-.guide-link { color: #1565c0; font-size: 12px; margin-left: 8px; cursor: pointer; }
+.sub-step-num {
+  width: 26px; height: 26px;
+  background: #c0392b;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.sub-step-content { flex: 1; }
+.sub-step-title { font-size: 13px; font-weight: bold; color: #222; margin-bottom: 5px; }
+.sub-step-desc { font-size: 13px; color: #555; line-height: 1.65; }
 
 /* ===== STEP IMAGE AREA ===== */
 .step-img-wrap {
   background: #fdf8ec;
   border: 1px solid #e8d5a3;
   border-radius: 8px;
-  padding: 22px 24px 16px;
+  padding: 16px 20px 14px;
   margin-top: 18px;
+  margin-bottom: 8px;
 }
-.simg-header {
-  display: flex; align-items: center; justify-content: center;
-  gap: 12px; margin-bottom: 20px;
+.simg-title-bar {
+  font-size: 12px;
+  font-weight: bold;
+  color: #c0392b;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
-.simg-title { font-size: 16px; font-weight: bold; color: #c0392b; text-transform: uppercase; letter-spacing: 0.5px; }
+.step-img-grid {
+  display: grid;
+  gap: 10px;
+}
+.step-img-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+.step-img-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.step-img-grid.cols-1 { grid-template-columns: 1fr; }
 
-.simg-single {
+.img-item { position: relative; }
+.img-item img {
   width: 100%;
-  border-radius: 6px;
-  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  border: 1px solid #ddd;
   display: block;
-  margin: 0 auto;
 }
-.simg-single-ph {
-  width: 100%; min-height: 220px;
-  background: #e8e8e8;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 13px; color: #aaa;
-  border-radius: 6px;
+.img-caption {
+  text-align: center;
+  font-size: 11px;
+  color: #999;
+  margin-top: 5px;
+  font-style: italic;
 }
-
-.simg-footnote { text-align: center; font-size: 12px; color: #999; margin-top: 12px; font-style: italic; }
-
-.step-full-img {
-  width: 100%; max-width: 100%;
-  border-radius: 6px; border: 1px solid #e0e0e0;
-  display: block; margin: 0 auto;
+.img-placeholder {
+  width: 100%;
+  min-height: 160px;
+  background: #eee;
+  border-radius: 5px;
+  border: 1px dashed #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #aaa;
+  flex-direction: column;
+  gap: 6px;
 }
+.img-placeholder .ph-icon { font-size: 28px; }
 
 /* ===== NOTE BOX ===== */
 .note-box {
@@ -241,6 +261,22 @@ a { text-decoration: none; color: inherit; }
   position: relative; line-height: 1.6;
 }
 .note-list li::before { content: "•"; position: absolute; left: 0; }
+
+/* tag nhãn */
+.tag {
+  display: inline-block;
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  color: #856404;
+  border-radius: 4px;
+  font-size: 11px;
+  padding: 1px 7px;
+  font-weight: bold;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+.tag.red { background: #fdecea; border-color: #e74c3c; color: #c0392b; }
+.tag.green { background: #e8f5e9; border-color: #4caf50; color: #2e7d32; }
 
 /* ===== DOWNLOAD BANNER ===== */
 .dl-banner {
@@ -371,6 +407,8 @@ footer {
   .guide-grid { grid-template-columns: 1fr 1fr; }
   .app-row { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr; padding: 0 16px; }
+  .step-img-grid.cols-2,
+  .step-img-grid.cols-3 { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -378,19 +416,18 @@ footer {
 
 <!-- HEADER -->
 <div class="header">
-  <!-- ✅ THÊM .header-inner để căn giữa giống footer -->
   <div class="header-inner">
-    <img class="header-logo" src="https://tamtru.vndpv.vn/logo.png" alt="Quốc Huy">
+    <img class="header-logo" src="https://dichvucong.bocongan.gov.vn/favicon.ico" alt="Quốc Huy" onerror="this.style.display='none'">
     <nav class="nav">
-      <a href="#" class="active">Đăng ký tạm trú trực tuyến</a>
+      <a href="#" class="active">Đăng ký cấp biển số xe qua Dịch vụ công</a>
     </nav>
     <button class="hotline-btn">
       <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:#fff;flex-shrink:0;">
         <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.32.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.01L6.6 10.8z"/>
       </svg>
       <div>
-        <div class="hl-label">Đường dây nóng:</div>
-        <div class="hl-num">0234 3823 530</div>
+        <div class="hl-label">Hỗ trợ:</div>
+        <div class="hl-num">1900 0368</div>
       </div>
     </button>
   </div>
@@ -402,16 +439,16 @@ footer {
   <!-- Title -->
   <div class="page-title-row">
     <div class="title-icon">
-      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M18 4h-2V2h-2v2H10V2H8v2H6C4.9 4 4 4.9 4 6v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 18H6V10h12v12zm0-14H6V6h2v2h2V6h4v2h2V6h2v2z"/></svg>
     </div>
-    <h1 class="page-title">Hướng dẫn đăng ký tạm trú trực tuyến dành cho người thuê, mượn, ở nhờ</h1>
+    <h1 class="page-title">Hướng dẫn đăng ký cấp biển số xe lần đầu qua Dịch vụ công Bộ Công An</h1>
   </div>
-  <p class="page-subtitle">Bạn có thể đăng ký tạm trú trực tuyến qua ứng dụng <strong>VNEID</strong> hoặc Cổng dịch vụ công Bộ Công an.</p>
+  <p class="page-subtitle">Thực hiện toàn bộ thủ tục trực tuyến tại <strong>dichvucong.bocongan.gov.vn</strong> — không cần đến trực tiếp cơ quan công an.</p>
 
   <!-- Link card -->
   <div class="link-card">
-    <div class="link-card-title">ĐĂNG KÝ TẠM TRÚ</div>
-    <div class="link-card-label">Truy cập:</div>
+    <div class="link-card-title">CỔNG DỊCH VỤ CÔNG BỘ CÔNG AN</div>
+    <div class="link-card-label">Truy cập tại địa chỉ:</div>
     <div class="link-row">
       <input class="link-input" id="linkInput" type="text" value="https://dichvucong.bocongan.gov.vn" readonly>
       <button class="icon-btn" onclick="copyLink()" title="Sao chép">
@@ -424,173 +461,444 @@ footer {
   </div>
 
   <!-- Steps section -->
-  <div class="step-section-title">Nội dung hướng dẫn đăng ký tạm trú</div>
+  <div class="step-section-title">📋 Các bước thực hiện</div>
   <div class="step-tabs">
-    <div class="step-tab active" onclick="switchStep(0)">Bước 1</div>
-    <div class="step-tab" onclick="switchStep(1)">Bước 2</div>
-    <div class="step-tab" onclick="switchStep(2)">Bước 3</div>
-    <div class="step-tab" onclick="switchStep(3)">Bước 4</div>
-    <div class="step-tab" onclick="switchStep(4)">Bước 5</div>
+    <div class="step-tab active"   onclick="switchStep(0)">Bước 1</div>
+    <div class="step-tab"          onclick="switchStep(1)">Bước 2</div>
+    <div class="step-tab"          onclick="switchStep(2)">Bước 3</div>
+    <div class="step-tab"          onclick="switchStep(3)">Bước 4</div>
+    <div class="step-tab"          onclick="switchStep(4)">Bước 5</div>
   </div>
 
-  <!-- BƯỚC 1 -->
+  <!-- ===================== BƯỚC 1 ===================== -->
   <div class="step-panel active" id="panel-0">
-    <div class="step-heading">Bước 1: Truy cập website https://dichvucong.bocongan.gov.vn và đăng nhập</div>
-    <div class="step-prepare">Chuẩn bị các tài liệu, gồm:</div>
-    <ul class="step-list">
-      <li>
-        Tờ khai thay đổi thông tin cư trú - CT01
-        <button class="dl-btn" onclick="window.open('data/examtam.doc')">⬇ Tải mẫu</button>
-        <a class="guide-link" href="data/guide.png" target="_blank">ⓘ Hướng dẫn điền</a>
-      </li>
-      <li>Giấy chứng nhận quyền sử dụng đất, giấy xác nhận chỗ ở hợp pháp hoặc giấy cam kết có chỗ ở hợp pháp</li>
-      <li>Hợp đồng thuê trọ</li>
-    </ul>
-    <p class="step-text">Truy cập website <a href="https://dichvucong.bocongan.gov.vn" target="_blank">dichvucong.bocongan.gov.vn</a> sau đó nhấn Đăng nhập.</p>
-    <p class="step-text">Đăng nhập tài khoản theo số định danh và mật khẩu VNeID. Hoặc mở ứng dụng VNeID quét mã QR để đăng nhập nhanh chóng.</p>
-    <div class="step-img-wrap">
-      <!-- <div class="simg-header">
-        <img src="https://tamtru.vndpv.vn/logo.png" alt="Quốc Huy" style="width:40px;height:40px;">
-        <div class="simg-title">Cổng dịch vụ công Bộ Công An</div>
-      </div> -->
-      <img src="data/step1.jpg" alt="Bước 1" class="simg-single" onerror="this.style.display='none';document.getElementById('step1-ph').style.display='flex'">
-      <div id="step1-ph" class="simg-single-ph" style="display:none;">🖥️ Hình ảnh minh họa bước 1</div>
-      <div class="simg-footnote">Hình ảnh minh họa bước 1</div>
+    <div class="step-heading">🔐 Bước 1: Đăng nhập Cổng dịch vụ công Bộ Công An</div>
+
+    <div class="sub-steps">
+      <div class="sub-step">
+        <div class="sub-step-num">1</div>
+        <div class="sub-step-content">
+          <div class="sub-step-title">Truy cập website</div>
+          <div class="sub-step-desc">Mở trình duyệt và vào địa chỉ <a href="https://dichvucong.bocongan.gov.vn" target="_blank" style="color:#1565c0;">dichvucong.bocongan.gov.vn</a>. Tại trang chủ, nhấn nút <strong>"Đăng nhập"</strong>.</div>
+        </div>
+      </div>
+
+      <div class="step-img-wrap">
+        <div class="simg-title-bar">🖼 Minh họa — Trang chủ &amp; nút Đăng nhập</div>
+        <div class="step-img-grid cols-2">
+          <div class="img-item">
+            <img src="media/image1.png" alt="Trang chủ cổng dịch vụ công" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>🖥️</div><div>Ảnh minh họa 1<br>Trang chủ cổng DVCBCA</div></div>'">
+            <div class="img-caption">Giao diện trang chủ</div>
+          </div>
+          <div class="img-item">
+            <img src="media/image2.png" alt="Chọn đăng nhập" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>🔑</div><div>Ảnh minh họa 2<br>Chọn phương thức đăng nhập</div></div>'">
+            <div class="img-caption">Chọn phương thức đăng nhập</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-step">
+        <div class="sub-step-num">2</div>
+        <div class="sub-step-content">
+          <div class="sub-step-title">Chọn hình thức đăng nhập</div>
+          <div class="sub-step-desc">Chọn một trong hai cách:
+            <ul class="step-list" style="margin-top:6px;">
+              <li>Nhập <strong>mã định danh</strong> và <strong>mật khẩu</strong> tài khoản VNeID.</li>
+              <li>Mở ứng dụng <strong>VNeID</strong> trên điện thoại và <strong>quét mã QR</strong> để đăng nhập nhanh.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-img-wrap">
+        <div class="simg-title-bar">🖼 Minh họa — Màn hình đăng nhập VNeID</div>
+        <div class="step-img-grid cols-1">
+          <div class="img-item">
+            <img src="media/image3.png" alt="Màn hình đăng nhập VNeID" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>📱</div><div>Ảnh minh họa 3<br>Màn hình nhập mã định danh / quét QR</div></div>'">
+            <div class="img-caption">Đăng nhập bằng mã định danh hoặc quét QR qua VNeID</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-step">
+        <div class="sub-step-num">3</div>
+        <div class="sub-step-content">
+          <div class="sub-step-title">Vào mục Thủ tục hành chính</div>
+          <div class="sub-step-desc">Sau khi đăng nhập thành công, trên thanh công cụ phía trên, nhấn vào <strong>"Thủ tục hành chính"</strong>.</div>
+        </div>
+      </div>
+
+      <div class="step-img-wrap">
+        <div class="simg-title-bar">🖼 Minh họa — Chọn Thủ tục hành chính</div>
+        <div class="step-img-grid cols-1">
+          <div class="img-item">
+            <img src="media/image4.png" alt="Chọn thủ tục hành chính" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>📋</div><div>Ảnh minh họa 4<br>Thanh menu Thủ tục hành chính</div></div>'">
+            <div class="img-caption">Chọn "Thủ tục hành chính" trên thanh menu</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-step">
+        <div class="sub-step-num">4</div>
+        <div class="sub-step-content">
+          <div class="sub-step-title">Tìm kiếm thủ tục &amp; chọn nơi nộp hồ sơ</div>
+          <div class="sub-step-desc">Tìm kiếm thủ tục <strong>"Đăng ký, cấp biển số xe lần đầu..."</strong> trong danh sách. Chọn đúng <strong>tỉnh/thành phố</strong> nơi bạn muốn đăng ký, sau đó nhấn <strong>"Nộp hồ sơ"</strong>.</div>
+        </div>
+      </div>
+
+      <div class="step-img-wrap">
+        <div class="simg-title-bar">🖼 Minh họa — Tìm thủ tục &amp; nộp hồ sơ</div>
+        <div class="step-img-grid cols-2">
+          <div class="img-item">
+            <img src="media/image5.png" alt="Tìm kiếm thủ tục cấp biển số" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>🔍</div><div>Ảnh minh họa 5<br>Tìm thủ tục cấp biển số xe</div></div>'">
+            <div class="img-caption">Tìm kiếm tên thủ tục</div>
+          </div>
+          <div class="img-item">
+            <img src="media/image6.png" alt="Nộp hồ sơ" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>📤</div><div>Ảnh minh họa 6<br>Nhấn Nộp hồ sơ</div></div>'">
+            <div class="img-caption">Nhấn "Nộp hồ sơ" để tiếp tục</div>
+          </div>
+        </div>
+      </div>
     </div>
+
     <div class="note-box">
-      <div class="note-icon">⚠️</div>
+      <div class="note-icon">💡</div>
       <div>
         <div class="note-title">Lưu ý</div>
         <ul class="note-list">
-          <li>Người đăng ký cần có tài khoản định danh điện tử mức 2 trên ứng dụng VNeID hoặc tài khoản Cổng dịch vụ công.</li>
-          <li>Hồ sơ điện tử có giá trị pháp lý tương đương hồ sơ giấy.</li>
-          <li>Thời gian xử lý: 3-5 ngày làm việc kể từ ngày nhận đủ hồ sơ hợp lệ.</li>
-          <li>Phí, lệ phí: Miễn phí theo quy định.</li>
+          <li>Bạn cần có tài khoản <strong>VNeID mức 2</strong> (đã xác thực sinh trắc học) hoặc tài khoản Cổng dịch vụ công để thực hiện.</li>
+          <li>Nếu chưa có tài khoản VNeID, hãy đến cơ quan Công an gần nhất để kích hoạt trước khi nộp hồ sơ trực tuyến.</li>
         </ul>
       </div>
     </div>
   </div>
 
-  <!-- BƯỚC 2 -->
+  <!-- ===================== BƯỚC 2 ===================== -->
   <div class="step-panel" id="panel-1">
-    <div class="step-heading">Bước 2: Chọn cơ quan thực hiện và hình thức đăng ký</div>
-    <ul class="step-list">
-      <li>Chọn cơ quan thực hiện <strong>"THÀNH PHỐ HUẾ"</strong> → <strong>"PHƯỜNG THUẬN HOÁ"</strong>.</li>
-      <li>Lựa chọn đăng ký <strong>"LẬP HỘ MỚI"</strong> → <strong>"Đăng ký tạm trú (nhân khẩu, hộ)"</strong>.</li>
-    </ul>
-    <div class="step-img-wrap" style="padding:16px;">
-      <img src="data/step2.png" alt="Bước 2" class="step-full-img" onerror="this.style.display='none'">
-      <div class="simg-footnote" style="margin-top:10px;">Hình ảnh minh họa bước 2</div>
+    <div class="step-heading">📝 Bước 2: Lựa chọn thủ tục và xác nhận thông tin</div>
+
+    <p class="step-text">Hệ thống sẽ hiển thị màn hình lựa chọn thủ tục. Chọn các thông tin phù hợp với trường hợp của bạn (loại xe, đối tượng đăng ký,...). Kiểm tra lại thông tin, sau đó nhấn <strong>"Đồng ý và tiếp tục"</strong> để sang bước tiếp theo.</p>
+
+    <div class="step-img-wrap">
+      <div class="simg-title-bar">🖼 Minh họa — Màn hình lựa chọn thủ tục</div>
+      <div class="step-img-grid cols-1">
+        <div class="img-item">
+          <img src="media/image7.png" alt="Lựa chọn thủ tục" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>📋</div><div>Ảnh minh họa 7<br>Màn hình lựa chọn thủ tục</div></div>'">
+          <div class="img-caption">Chọn các thông tin tương ứng và nhấn "Đồng ý và tiếp tục"</div>
+        </div>
+      </div>
     </div>
+
     <div class="note-box">
-      <div class="note-icon">⚠️</div>
+      <div class="note-icon">💡</div>
       <div>
         <div class="note-title">Lưu ý</div>
         <ul class="note-list">
-          <li>Người đăng ký cần có tài khoản định danh điện tử mức 2 trên ứng dụng VNeID hoặc tài khoản Cổng dịch vụ công.</li>
-          <li>Hồ sơ điện tử có giá trị pháp lý tương đương hồ sơ giấy.</li>
-          <li>Thời gian xử lý: 3-5 ngày làm việc kể từ ngày nhận đủ hồ sơ hợp lệ.</li>
-          <li>Phí, lệ phí: Miễn phí theo quy định.</li>
+          <li>Chọn đúng loại thủ tục để hệ thống hiển thị đúng biểu mẫu và yêu cầu giấy tờ.</li>
+          <li>Nếu không chắc nên chọn mục nào, hãy liên hệ đường dây hỗ trợ để được hướng dẫn.</li>
         </ul>
       </div>
     </div>
   </div>
 
-  <!-- BƯỚC 3 -->
+  <!-- ===================== BƯỚC 3 ===================== -->
   <div class="step-panel" id="panel-2">
-    <div class="step-heading">Bước 3: Nhập địa chỉ tạm trú</div>
-    <p class="step-text" style="margin-bottom:10px;">Chọn 1 trong 2 hình thức:</p>
-    <ul class="step-list">
-      <li>Nếu đăng ký cho bản thân → Chọn <strong>"Người khai thông tin là người Đăng ký tạm trú"</strong></li>
-      <li>Nếu khai hộ: Nhập thông tin cá nhân của người đăng ký tạm trú</li>
-    </ul>
-    <p class="step-text">Nhập địa chỉ (chỉ nhập số nhà + tên đường), không cần nhập tên phường, thành phố.</p>
-    <p class="step-text" style="color:#c0392b;font-weight:bold;margin-top:8px;">LƯU Ý: TẤT CẢ THÔNG TIN ĐIỀN BÊN DƯỚI ĐỀU LÀ VÍ DỤ MINH HỌA.</p>
-    <div class="step-img-wrap" style="padding:16px;margin-top:16px;">
-      <img src="data/step3.jpg" alt="Bước 3" class="step-full-img" onerror="this.style.display='none'">
-      <div class="simg-footnote" style="margin-top:10px;">Hình ảnh minh họa bước 3</div>
+    <div class="step-heading">📄 Bước 3: Nộp hồ sơ trực tuyến</div>
+
+    <div class="sub-steps">
+      <div class="sub-step">
+        <div class="sub-step-num">1</div>
+        <div class="sub-step-content">
+          <div class="sub-step-title">Nhập số khung / số máy &amp; tra cứu thông tin</div>
+          <div class="sub-step-desc">Điền đầy đủ thông tin xe (số khung, số máy,...), sau đó nhấn <strong>"Tra cứu"</strong> để hệ thống tự động lấy thông tin chủ xe và thông tin xe từ cơ sở dữ liệu.</div>
+        </div>
+      </div>
+
+      <div class="step-img-wrap">
+        <div class="simg-title-bar">🖼 Minh họa — Tra cứu thông tin xe</div>
+        <div class="step-img-grid cols-1">
+          <div class="img-item">
+            <img src="media/image8.png" alt="Tra cứu thông tin xe" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>🔍</div><div>Ảnh minh họa 8<br>Nhập thông tin &amp; tra cứu</div></div>'">
+            <div class="img-caption">Điền thông tin và nhấn "Tra cứu"</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-step">
+        <div class="sub-step-num">2</div>
+        <div class="sub-step-content">
+          <div class="sub-step-title">Kiểm tra &amp; hoàn chỉnh thông tin chủ xe</div>
+          <div class="sub-step-desc">Rà soát kỹ thông tin cá nhân của chủ xe. Nếu có sai sót, hãy chỉnh sửa trực tiếp trên biểu mẫu. <span class="tag red">* Bắt buộc</span> — các trường có dấu sao đỏ không được bỏ trống.</div>
+        </div>
+      </div>
+
+      <div class="step-img-wrap">
+        <div class="simg-title-bar">🖼 Minh họa — Thông tin chủ xe</div>
+        <div class="step-img-grid cols-1">
+          <div class="img-item">
+            <img src="media/image9.png" alt="Thông tin chủ xe" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>👤</div><div>Ảnh minh họa 9<br>Phần thông tin chủ xe</div></div>'">
+            <div class="img-caption">Kiểm tra và bổ sung thông tin chủ xe nếu cần</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-step">
+        <div class="sub-step-num">3</div>
+        <div class="sub-step-content">
+          <div class="sub-step-title">Kiểm tra thông tin nộp lệ phí trước bạ</div>
+          <div class="sub-step-desc">Thông tin lệ phí trước bạ sẽ được tự động điền từ kết quả tra cứu ở trên. Kiểm tra lại để đảm bảo chính xác.</div>
+        </div>
+      </div>
+
+      <div class="step-img-wrap">
+        <div class="simg-title-bar">🖼 Minh họa — Lệ phí trước bạ</div>
+        <div class="step-img-grid cols-1">
+          <div class="img-item">
+            <img src="media/image10.png" alt="Thông tin lệ phí trước bạ" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>💰</div><div>Ảnh minh họa 10<br>Thông tin lệ phí trước bạ</div></div>'">
+            <div class="img-caption">Thông tin lệ phí trước bạ được tự động điền</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-step">
+        <div class="sub-step-num">4</div>
+        <div class="sub-step-content">
+          <div class="sub-step-title">Nếu có biển số đấu giá <span class="tag">Tùy chọn</span></div>
+          <div class="sub-step-desc">Trường hợp chủ xe đã trúng đấu giá biển số, hãy <strong>tích chọn ô "Là biển số đấu giá"</strong> để hệ thống xử lý đúng quy trình.</div>
+        </div>
+      </div>
+
+      <div class="step-img-wrap">
+        <div class="simg-title-bar">🖼 Minh họa — Ô chọn biển số đấu giá</div>
+        <div class="step-img-grid cols-1">
+          <div class="img-item">
+            <img src="media/image11.png" alt="Biển số đấu giá" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>🏷️</div><div>Ảnh minh họa 11<br>Ô tích biển số đấu giá</div></div>'">
+            <div class="img-caption">Tích chọn nếu là biển số đấu giá</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-step">
+        <div class="sub-step-num">5</div>
+        <div class="sub-step-content">
+          <div class="sub-step-title">Chọn hình thức nhận kết quả</div>
+          <div class="sub-step-desc">Chọn một trong hai cách nhận kết quả:
+            <ul class="step-list" style="margin-top:6px;">
+              <li><strong>Nhận trực tiếp</strong> tại cơ quan Công an.</li>
+              <li><strong>Nhận qua bưu chính</strong> (Dịch vụ bưu chính công ích).</li>
+            </ul>
+            Sau đó điền đầy đủ thông tin người nhận kết quả.
+          </div>
+        </div>
+      </div>
+
+      <div class="step-img-wrap">
+        <div class="simg-title-bar">🖼 Minh họa — Hình thức nhận kết quả</div>
+        <div class="step-img-grid cols-1">
+          <div class="img-item">
+            <img src="media/image12.png" alt="Hình thức nhận kết quả" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>📬</div><div>Ảnh minh họa 12<br>Chọn hình thức nhận kết quả</div></div>'">
+            <div class="img-caption">Chọn hình thức nhận và điền thông tin người nhận</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-step">
+        <div class="sub-step-num">6</div>
+        <div class="sub-step-content">
+          <div class="sub-step-title">Xác nhận &amp; nộp hồ sơ</div>
+          <div class="sub-step-desc">Nhấn <strong>"Đồng ý và tiếp tục"</strong>. Kiểm tra lại toàn bộ thông tin lần cuối, nhập <strong>mã xác nhận</strong>, tích chọn <em>"Tôi xin chịu trách nhiệm trước pháp luật về lời khai trên"</em>, rồi nhấn <strong>"Nộp hồ sơ"</strong>.</div>
+        </div>
+      </div>
+
+      <div class="step-img-wrap">
+        <div class="simg-title-bar">🖼 Minh họa — Xác nhận &amp; nộp hồ sơ</div>
+        <div class="step-img-grid cols-1">
+          <div class="img-item">
+            <img src="media/image13.png" alt="Xác nhận và nộp hồ sơ" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>✅</div><div>Ảnh minh họa 13<br>Màn hình xác nhận nộp hồ sơ</div></div>'">
+            <div class="img-caption">Nhập mã xác nhận và nhấn "Nộp hồ sơ"</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-step">
+        <div class="sub-step-num">7</div>
+        <div class="sub-step-content">
+          <div class="sub-step-title">Lưu lại số hồ sơ</div>
+          <div class="sub-step-desc">Sau khi nộp thành công, hệ thống sẽ hiển thị <strong>số hồ sơ</strong> và gửi thông báo qua <strong>email/SMS</strong>. <span class="tag green">Quan trọng</span> — hãy lưu lại số hồ sơ để tra cứu tiến độ xử lý.</div>
+        </div>
+      </div>
+
+      <div class="step-img-wrap">
+        <div class="simg-title-bar">🖼 Minh họa — Nộp hồ sơ thành công</div>
+        <div class="step-img-grid cols-1">
+          <div class="img-item">
+            <img src="media/image14.png" alt="Nộp hồ sơ thành công" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>🎉</div><div>Ảnh minh họa 14<br>Thông báo nộp hồ sơ thành công</div></div>'">
+            <div class="img-caption">Thông báo nộp hồ sơ thành công — lưu lại số hồ sơ</div>
+          </div>
+        </div>
+      </div>
     </div>
+
     <div class="note-box">
-      <div class="note-icon">⚠️</div>
+      <div class="note-icon">💡</div>
       <div>
         <div class="note-title">Lưu ý</div>
         <ul class="note-list">
-          <li>Người đăng ký cần có tài khoản định danh điện tử mức 2 trên ứng dụng VNeID hoặc tài khoản Cổng dịch vụ công.</li>
-          <li>Hồ sơ điện tử có giá trị pháp lý tương đương hồ sơ giấy.</li>
-          <li>Thời gian xử lý: 3-5 ngày làm việc kể từ ngày nhận đủ hồ sơ hợp lệ.</li>
-          <li>Phí, lệ phí: Miễn phí theo quy định.</li>
+          <li>Thông tin khai báo phải trùng khớp với hồ sơ xe gốc. Sai sót có thể khiến hồ sơ bị từ chối.</li>
+          <li>Kiểm tra kỹ địa chỉ email và số điện thoại để nhận thông báo đúng.</li>
         </ul>
       </div>
     </div>
   </div>
 
-  <!-- BƯỚC 4 -->
+  <!-- ===================== BƯỚC 4 ===================== -->
   <div class="step-panel" id="panel-3">
-    <div class="step-heading">Bước 4: Tải lên giấy tờ</div>
-    <p class="step-text" style="margin-bottom:8px;">Hồ sơ đính kèm: Lựa chọn trường hợp <strong>"Đăng ký tạm trú tại chỗ ở hợp pháp do thuê, mượn, ở nhờ"</strong>.</p>
-    <p class="step-text" style="margin-bottom:8px;">Tải lên ảnh chụp:</p>
-    <ul class="step-list">
-      <li>
-        Tờ khai thay đổi thông tin cư trú - CT01
-        <button class="dl-btn" onclick="window.open('mẫu_tạm_trú.doc')">⬇ Tải mẫu</button>
-        <a class="guide-link" href="hướng_dẫn_điền.png" target="_blank">ⓘ Hướng dẫn điền</a>
-      </li>
-      <li>Giấy chứng nhận quyền sử dụng đất; giấy xác nhận chỗ ở hợp pháp hoặc giấy cam kết có chỗ ở hợp pháp (đối với trường hợp chủ cơ sở không có giấy chứng nhận quyền sử dụng đất)</li>
-      <li>Hợp đồng thuê trọ</li>
-    </ul>
-    <div class="step-img-wrap" style="padding:16px;margin-top:16px;">
-      <img src="data/step4.png" alt="Bước 4" class="step-full-img" onerror="this.style.display='none'">
-      <div class="simg-footnote" style="margin-top:10px;">Hình ảnh minh họa bước 4</div>
+    <div class="step-heading">🔔 Bước 4: Theo dõi hồ sơ &amp; thanh toán lệ phí</div>
+
+    <div class="sub-steps">
+      <div class="sub-step">
+        <div class="sub-step-num">1</div>
+        <div class="sub-step-content">
+          <div class="sub-step-title">Vào mục Quản lý hồ sơ</div>
+          <div class="sub-step-desc">Truy cập lại cổng dịch vụ công, chọn <strong>"Thông tin cá nhân"</strong> rồi chọn <strong>"Quản lý hồ sơ đã nộp"</strong> để xem danh sách hồ sơ.</div>
+        </div>
+      </div>
+
+      <div class="step-img-wrap">
+        <div class="simg-title-bar">🖼 Minh họa — Quản lý hồ sơ đã nộp</div>
+        <div class="step-img-grid cols-1">
+          <div class="img-item">
+            <img src="media/image15.png" alt="Quản lý hồ sơ" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>📁</div><div>Ảnh minh họa 15<br>Màn hình quản lý hồ sơ</div></div>'">
+            <div class="img-caption">Chọn "Quản lý hồ sơ đã nộp"</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-step">
+        <div class="sub-step-num">2</div>
+        <div class="sub-step-content">
+          <div class="sub-step-title">Chọn hồ sơ &amp; yêu cầu cấp biển số</div>
+          <div class="sub-step-desc">Tìm hồ sơ biển số xe trong danh sách, nhấn vào <strong>"Cấp biển số xe"</strong>. Hệ thống sẽ chuyển sang màn hình cấp biển số mới.</div>
+        </div>
+      </div>
+
+      <div class="step-img-wrap">
+        <div class="simg-title-bar">🖼 Minh họa — Chọn hồ sơ cấp biển số</div>
+        <div class="step-img-grid cols-1">
+          <div class="img-item">
+            <img src="media/image16.png" alt="Chọn cấp biển số" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>🚗</div><div>Ảnh minh họa 16<br>Nhấn Cấp biển số xe</div></div>'">
+            <div class="img-caption">Nhấn "Cấp biển số xe" trong danh sách hồ sơ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-step">
+        <div class="sub-step-num">3</div>
+        <div class="sub-step-content">
+          <div class="sub-step-title">Xác nhận yêu cầu cấp biển số</div>
+          <div class="sub-step-desc">Nhập <strong>mã xác nhận</strong> và nhấn <strong>"Cấp biển số mới"</strong>. Hệ thống sẽ xác nhận thành công và bạn chờ thông báo kết quả qua <strong>SMS hoặc email</strong>.</div>
+        </div>
+      </div>
+
+      <div class="step-img-wrap">
+        <div class="simg-title-bar">🖼 Minh họa — Xác nhận cấp biển số mới</div>
+        <div class="step-img-grid cols-1">
+          <div class="img-item">
+            <img src="media/image17.png" alt="Xác nhận cấp biển số" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>🔢</div><div>Ảnh minh họa 17<br>Xác nhận cấp biển số mới</div></div>'">
+            <div class="img-caption">Nhập mã xác nhận và nhấn "Cấp biển số mới"</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-step">
+        <div class="sub-step-num">4</div>
+        <div class="sub-step-content">
+          <div class="sub-step-title">Nhận thông báo &amp; thanh toán lệ phí</div>
+          <div class="sub-step-desc">Khi có thông báo kết quả biển số gửi về email/SMS, nhấn vào <strong>đường link đính kèm</strong> hoặc truy cập lại cổng dịch vụ để thanh toán. Nhấn <strong>"Thanh toán trực tuyến"</strong> và thực hiện theo hướng dẫn.</div>
+        </div>
+      </div>
+
+      <div class="step-img-wrap">
+        <div class="simg-title-bar">🖼 Minh họa — Thông báo &amp; thanh toán</div>
+        <div class="step-img-grid cols-2">
+          <div class="img-item">
+            <img src="media/image18.png" alt="Thông báo kết quả qua điện thoại" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>📲</div><div>Ảnh minh họa 18<br>Thông báo kết quả trên điện thoại</div></div>'">
+            <div class="img-caption">Thông báo kết quả qua SMS/email</div>
+          </div>
+          <div class="img-item">
+            <img src="media/image19.png" alt="Thanh toán trực tuyến" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>💳</div><div>Ảnh minh họa 19<br>Thanh toán trực tuyến</div></div>'">
+            <div class="img-caption">Nhấn "Thanh toán trực tuyến" để hoàn tất</div>
+          </div>
+        </div>
+      </div>
     </div>
+
     <div class="note-box">
-      <div class="note-icon">⚠️</div>
+      <div class="note-icon">💡</div>
       <div>
         <div class="note-title">Lưu ý</div>
         <ul class="note-list">
-          <li>Người đăng ký cần có tài khoản định danh điện tử mức 2 trên ứng dụng VNeID hoặc tài khoản Cổng dịch vụ công.</li>
-          <li>Hồ sơ điện tử có giá trị pháp lý tương đương hồ sơ giấy.</li>
-          <li>Thời gian xử lý: 3-5 ngày làm việc kể từ ngày nhận đủ hồ sơ hợp lệ.</li>
-          <li>Phí, lệ phí: Miễn phí theo quy định.</li>
+          <li>Hệ thống sẽ hiển thị <strong>"Thanh toán thành công"</strong> sau khi hoàn tất. Hãy chụp màn hình lưu lại làm bằng chứng.</li>
+          <li>Nếu không nhận được thông báo sau 3–5 ngày làm việc, liên hệ cơ quan Công an để kiểm tra hồ sơ.</li>
         </ul>
       </div>
     </div>
   </div>
 
-  <!-- BƯỚC 5 -->
+  <!-- ===================== BƯỚC 5 ===================== -->
   <div class="step-panel" id="panel-4">
-    <div class="step-heading">Bước 5: Xác nhận và nộp hồ sơ</div>
-    <ul class="step-list">
-      <li>Kiểm tra lại chính xác thông tin. Nhấn vào xác nhận <strong>"Tôi xin chịu trách nhiệm trước pháp luật về lời khai trên"</strong> và nhấn vào <strong>"Nộp hồ sơ"</strong>.</li>
-      <li>Quét mã QR để thanh toán lệ phí <strong>7.000 đồng</strong>. Trở về lại trình duyệt Web để kiểm tra hồ sơ thành công.</li>
-    </ul>
-    <div class="step-img-wrap" style="padding:16px;margin-top:16px;">
-      <img src="data/step5.jpg" alt="Bước 5" class="step-full-img" onerror="this.style.display='none'">
-      <div class="simg-footnote" style="margin-top:10px;">Hình ảnh minh họa bước 5</div>
+    <div class="step-heading">🎯 Bước 5: Nhận kết quả — biển số xe</div>
+
+    <p class="step-text" style="margin-bottom:14px;">Sau khi hồ sơ được duyệt và lệ phí đã thanh toán, bạn có thể nhận biển số xe theo hình thức đã chọn:</p>
+
+    <div class="sub-steps">
+      <div class="sub-step">
+        <div class="sub-step-num">📬</div>
+        <div class="sub-step-content">
+          <div class="sub-step-title">Nhận qua bưu chính công ích</div>
+          <div class="sub-step-desc">Cần chuẩn bị để nộp kèm theo biển số:
+            <ul class="step-list" style="margin-top:8px;">
+              <li><strong>Phiếu kiểm tra chất lượng xuất xưởng</strong> có dán bản chà số máy, số khung.</li>
+              <li>Phiếu phải có <strong>dấu giáp lai</strong> của cơ sở sản xuất.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-step">
+        <div class="sub-step-num">🏢</div>
+        <div class="sub-step-content">
+          <div class="sub-step-title">Nhận trực tiếp tại cơ quan Công an</div>
+          <div class="sub-step-desc">Mang theo đầy đủ các giấy tờ sau khi đến:
+            <ul class="step-list" style="margin-top:8px;">
+              <li><strong>Căn cước công dân (CCCD)</strong> bản gốc.</li>
+              <li><strong>Hóa đơn mua xe</strong> từ đại lý / cơ sở bán xe.</li>
+              <li><strong>Phiếu kiểm tra chất lượng xuất xưởng</strong> (phiếu xuất xưởng).</li>
+              <li><strong>Biên lai đóng thuế trước bạ</strong>.</li>
+              <li><strong>Biên lai đóng phí cấp biển số</strong>.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
+
     <div class="note-box">
       <div class="note-icon">⚠️</div>
       <div>
-        <div class="note-title">Lưu ý</div>
+        <div class="note-title">Nhắc nhở quan trọng</div>
         <ul class="note-list">
-          <li>Người đăng ký cần có tài khoản định danh điện tử mức 2 trên ứng dụng VNeID hoặc tài khoản Cổng dịch vụ công.</li>
-          <li>Hồ sơ điện tử có giá trị pháp lý tương đương hồ sơ giấy.</li>
-          <li>Thời gian xử lý: 3-5 ngày làm việc kể từ ngày nhận đủ hồ sơ hợp lệ.</li>
-          <li>Phí, lệ phí: Miễn phí theo quy định.</li>
+          <li>Thiếu bất kỳ giấy tờ nào trong danh sách trên, cơ quan Công an có thể từ chối trao biển số.</li>
+          <li>Phiếu xuất xưởng phải còn nguyên, không rách hoặc phai mờ thông tin.</li>
+          <li>Trường hợp ủy quyền người khác đến nhận thay, cần có thêm <strong>giấy ủy quyền có xác nhận</strong> và CCCD của người được ủy quyền.</li>
         </ul>
       </div>
     </div>
   </div>
 
-  <!-- Download banner -->
-  <div class="dl-banner">
-    <span>Tải tài liệu mẫu thủ tục: Khai báo tạm trú</span>
-    <button class="dl-banner-btn" onclick="window.open('mẫu_tạm_trú.doc')">⬇ Tải về</button>
-  </div>
-
-  <!-- Guide section -->
-  <div class="guide-section">
+  <!-- GUIDE SECTION -->
+  <div class="guide-section" style="margin-top:36px;">
     <div class="guide-row">
-      <h2>Hướng dẫn</h2>
+      <h2>Hướng dẫn liên quan</h2>
       <a href="#">Xem thêm</a>
     </div>
     <div class="guide-grid">
@@ -599,20 +907,8 @@ footer {
           <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 13h8v1H8zm0 3h8v1H8zm0-6h3v1H8z"/></svg>
         </div>
         <div class="guide-body">
-          <div class="guide-name">Hướng dẫn đăng ký lưu trú</div>
-          <div class="guide-btns"><button class="btn-red">📄 Xem chi tiết</button></div>
-        </div>
-      </div>
-      <div class="guide-card">
-        <div class="guide-thumb">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 13h8v1H8zm0 3h8v1H8zm0-6h3v1H8z"/></svg>
-        </div>
-        <div class="guide-body">
           <div class="guide-name">Hướng dẫn đăng ký tạm trú trực tuyến</div>
-          <div class="guide-btns">
-            <button class="btn-red">📄 Xem chi tiết</button>
-            <button class="btn-outline">▶ Xem video</button>
-          </div>
+          <div class="guide-btns"><button class="btn-red">📄 Xem chi tiết</button></div>
         </div>
       </div>
       <div class="guide-card">
@@ -632,46 +928,20 @@ footer {
           <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 13h8v1H8zm0 3h8v1H8zm0-6h3v1H8z"/></svg>
         </div>
         <div class="guide-body">
-          <div class="guide-name">Hướng dẫn tách hộ khẩu</div>
+          <div class="guide-name">Hướng dẫn đổi giấy phép lái xe trực tuyến</div>
+          <div class="guide-btns">
+            <button class="btn-red">📄 Xem chi tiết</button>
+            <button class="btn-outline">▶ Xem video</button>
+          </div>
+        </div>
+      </div>
+      <div class="guide-card">
+        <div class="guide-thumb">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 13h8v1H8zm0 3h8v1H8zm0-6h3v1H8z"/></svg>
+        </div>
+        <div class="guide-body">
+          <div class="guide-name">Hướng dẫn kích hoạt tài khoản VNeID mức 2</div>
           <div class="guide-btns"><button class="btn-red">📄 Xem chi tiết</button></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- App banners -->
-  <div class="app-row">
-    <div class="app-banner">
-      <div class="app-icon-box">
-        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-      </div>
-      <div>
-        <div class="app-dl-label">TẢI APP TROMOI HOẠT NGAY</div>
-        <div class="app-brand-name"><span class="y">Chi</span>1<span class="y">Chạm</span></div>
-        <div class="app-tagline">QUẢN LÝ TRỌ<br>TRONG TẦM TAY</div>
-      </div>
-      <div class="app-right">
-        <div class="app-qr-box">QR<br>Code</div>
-        <div class="app-stores">
-          <div class="store-tag">🍎 App Store</div>
-          <div class="store-tag">▶ Google Play</div>
-        </div>
-      </div>
-    </div>
-    <div class="app-banner">
-      <div class="app-icon-box">
-        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-      </div>
-      <div>
-        <div class="app-dl-label">TẢI APP TROMOI HOẠT NGAY</div>
-        <div class="app-brand-name"><span class="y">Chi</span>1<span class="y">Chạm</span></div>
-        <div class="app-tagline">QUẢN LÝ TRỌ<br>TRONG TẦM TAY</div>
-      </div>
-      <div class="app-right">
-        <div class="app-qr-box">QR<br>Code</div>
-        <div class="app-stores">
-          <div class="store-tag">🍎 App Store</div>
-          <div class="store-tag">▶ Google Play</div>
         </div>
       </div>
     </div>
@@ -685,35 +955,32 @@ footer {
 <footer>
   <div class="footer-inner">
     <div class="footer-logo-wrap">
-      <img src="https://tamtru.vndpv.vn/logo.png" alt="Quốc Huy" style="width:72px;height:72px;">
-      <div class="footer-org">Công an phường Thuận Hóa</div>
+      <img src="https://dichvucong.bocongan.gov.vn/favicon.ico" alt="Quốc Huy" style="width:72px;height:72px;" onerror="this.style.display='none'">
+      <div class="footer-org">Cổng Dịch vụ công Bộ Công An</div>
     </div>
     <div>
       <div class="footer-col-title">Hệ thống</div>
       <ul class="footer-links">
         <li>Tiếp nhận phản ánh</li>
         <li>Hướng dẫn dịch vụ công phổ biến</li>
+        <li>Đăng ký cấp biển số xe</li>
         <li>Đăng ký tạm trú trực tuyến</li>
       </ul>
     </div>
     <div>
       <div class="footer-col-title">Kết nối với chúng tôi</div>
       <div class="fc-item">
-        <div class="fc-ico"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
-        <div><div class="fc-lbl">Email:</div><div class="fc-val">conganphuongthuanhoa@gmail.com</div></div>
-      </div>
-      <div class="fc-item">
-        <div class="fc-ico"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
-        <div><div class="fc-lbl">Trụ sở:</div><div class="fc-val">138 Trần Phú, P. Thuận Hóa, TP. Huế</div></div>
-      </div>
-      <div class="fc-item">
         <div class="fc-ico"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.32.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.01L6.6 10.8z"/></svg></div>
-        <div><div class="fc-lbl">Số điện thoại:</div><div class="fc-val">0234 3823 530</div></div>
+        <div><div class="fc-lbl">Hỗ trợ:</div><div class="fc-val">1900 0368</div></div>
+      </div>
+      <div class="fc-item">
+        <div class="fc-ico"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+        <div><div class="fc-lbl">Website:</div><div class="fc-val">dichvucong.bocongan.gov.vn</div></div>
       </div>
     </div>
   </div>
   <div class="footer-bottom">
-    Website được xây dựng và phát triển bởi <span>CHI</span>
+    Cổng Dịch vụ công Bộ Công An — <span>Phục vụ người dân 24/7</span>
   </div>
 </footer>
 
@@ -721,10 +988,6 @@ footer {
 function switchStep(idx) {
   document.querySelectorAll('.step-tab').forEach((t,i) => t.classList.toggle('active', i===idx));
   document.querySelectorAll('.step-panel').forEach((p,i) => p.classList.toggle('active', i===idx));
-}
-function switchMethod(el) {
-  document.querySelectorAll('.method-tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
 }
 function copyLink() {
   const inp = document.getElementById('linkInput');
