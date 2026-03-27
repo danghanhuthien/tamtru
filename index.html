@@ -3,250 +3,518 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Đăng ký tạm trú trực tuyến - Công an Phường Thuận Hòa</title>
+<title>Đăng ký tạm trú trực tuyến - Công an Phường Thuận Hóa</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: Arial, sans-serif; font-size: 14px; color: #333; background: #f5f5f5; }
-  a { text-decoration: none; color: inherit; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; font-size: 14px; color: #333; background: #fff; }
+a { text-decoration: none; color: inherit; }
 
-  /* BREADCRUMB */
-  .breadcrumb { background: #fff; border-bottom: 1px solid #e0e0e0; padding: 10px 0; }
-  .breadcrumb .container { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #666; }
-  .breadcrumb a { color: #666; }
-  .breadcrumb .sep { color: #aaa; }
-  .breadcrumb .current { color: #c0392b; }
+/* ===== HEADER ===== */
+.header {
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  height: 66px;
+  position: sticky; top: 0; z-index: 100;
+}
+.header-logo { height: 46px; width: 46px; margin-right: 40px; flex-shrink: 0; }
+.nav { display: flex; align-items: center; gap: 36px; flex: 1; }
+.nav a { font-size: 14px; color: #333; font-weight: 500; white-space: nowrap; }
+.nav a.active {
+  color: #c0392b;
+  border: 1.5px solid #c0392b;
+  border-radius: 20px;
+  padding: 5px 14px;
+}
+.hotline-btn {
+  margin-left: auto;
+  background: #c0392b;
+  color: #fff;
+  border: none;
+  border-radius: 28px;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  white-space: nowrap;
+}
+.hotline-btn .hl-label { font-size: 11px; font-weight: normal; opacity: 0.85; line-height: 1; }
+.hotline-btn .hl-num { font-size: 16px; font-weight: bold; line-height: 1.2; letter-spacing: 0.5px; }
 
-  .container { max-width: 980px; margin: 0 auto; padding: 0 16px; }
+/* ===== BREADCRUMB ===== */
+.breadcrumb {
+  background: #fff;
+  border-bottom: 1px solid #ececec;
+  padding: 10px 40px;
+  font-size: 13px;
+  color: #888;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.breadcrumb a { color: #888; }
+.breadcrumb .sep { color: #bbb; }
+.breadcrumb .current { color: #c0392b; }
 
-  /* MAIN CONTENT */
-  .main { padding: 20px 0 40px; }
+/* ===== MAIN ===== */
+.main { max-width: 1100px; margin: 0 auto; padding: 32px 40px 60px; }
 
-  /* TITLE SECTION */
-  .page-title-box { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
-  .page-title-icon { width: 36px; height: 36px; background: #c0392b; border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
-  .page-title-icon svg { width: 20px; height: 20px; fill: #fff; }
-  .page-title { font-size: 20px; font-weight: bold; color: #222; line-height: 1.3; }
-  .page-subtitle { font-size: 13px; color: #555; margin-bottom: 18px; }
-  .page-subtitle strong { color: #1565c0; }
+/* ===== PAGE TITLE ===== */
+.page-title-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+.title-icon {
+  width: 36px; height: 36px;
+  background: #c0392b;
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 3px;
+}
+.title-icon svg { width: 20px; height: 20px; fill: #fff; }
+.page-title { font-size: 23px; font-weight: bold; color: #111; line-height: 1.35; }
+.page-subtitle { font-size: 14px; color: #555; margin-bottom: 24px; padding-left: 48px; }
+.page-subtitle strong { color: #c0392b; font-style: italic; }
 
-  /* TABS */
-  .tabs { display: flex; gap: 0; margin-bottom: 20px; }
-  .tab { padding: 9px 22px; border: 1px solid #ccc; background: #f0f0f0; font-size: 13px; font-weight: bold; cursor: pointer; color: #555; }
-  .tab.active { background: #c0392b; color: #fff; border-color: #c0392b; }
-  .tab:not(.active):hover { background: #e0e0e0; }
+/* ===== METHOD TABS ===== */
+.method-tabs { display: flex; gap: 6px; margin-bottom: 24px; }
+.method-tab {
+  padding: 11px 28px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  letter-spacing: 0.3px;
+  border: 1.5px solid transparent;
+  transition: all 0.15s;
+}
+.method-tab.active { background: #c0392b; color: #fff; }
+.method-tab:not(.active) { background: #f5f5f5; color: #666; border-color: #ddd; }
 
-  /* INFO CARD */
-  .info-card { background: #fff; border: 1px solid #ddd; border-radius: 4px; padding: 16px 20px; margin-bottom: 24px; }
-  .info-card-title { font-size: 13px; font-weight: bold; color: #555; margin-bottom: 10px; }
-  .info-card-steps { display: flex; align-items: center; gap: 0; }
-  .info-card-logo { margin-right: 16px; }
-  .info-card-logo img { width: 48px; height: 48px; object-fit: contain; }
-  .info-card-logo-placeholder { width: 48px; height: 48px; background: #8b0000; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ffd700; font-size: 9px; font-weight: bold; text-align: center; line-height: 1.2; }
-  .step-arrow { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #333; }
-  .step-arrow span { color: #aaa; margin: 0 6px; font-size: 18px; }
-  .step-link { color: #c0392b; font-weight: bold; cursor: pointer; }
-  .hotline-btn { margin-left: auto; background: #c0392b; color: #fff; border: none; border-radius: 4px; padding: 10px 16px; font-size: 13px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
-  .hotline-btn svg { width: 16px; height: 16px; fill: #fff; }
+/* ===== LINK CARD ===== */
+.link-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin-bottom: 30px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.link-card-title { font-size: 13px; font-weight: bold; color: #222; margin-bottom: 4px; }
+.link-card-label { font-size: 12px; color: #999; margin-bottom: 10px; }
+.link-row { display: flex; align-items: center; gap: 8px; }
+.link-input {
+  flex: 1;
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 14px;
+  color: #444;
+  outline: none;
+  cursor: text;
+}
+.icon-btn {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: #f5f5f5;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; flex-shrink: 0;
+  transition: background 0.15s;
+}
+.icon-btn:hover { background: #e8e8e8; }
+.icon-btn.red { background: #c0392b; border-color: #c0392b; }
+.icon-btn.red:hover { background: #a93226; }
+.icon-btn svg { width: 18px; height: 18px; }
 
-  /* STEPS TABS */
-  .steps-label { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 12px; }
-  .step-tabs { display: flex; gap: 0; margin-bottom: 0; border-bottom: none; }
-  .step-tab { padding: 9px 20px; border: 1px solid #ccc; background: #f5f5f5; font-size: 13px; cursor: pointer; color: #555; border-right: none; }
-  .step-tab:last-child { border-right: 1px solid #ccc; }
-  .step-tab.active { background: #c0392b; color: #fff; border-color: #c0392b; }
+/* ===== STEP SECTION ===== */
+.step-section-title { font-size: 15px; font-weight: bold; color: #222; margin-bottom: 12px; }
+.step-tabs { display: flex; }
+.step-tab {
+  flex: 1;
+  padding: 11px 0;
+  text-align: center;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  background: #f5f5f5;
+  color: #666;
+  border-right: none;
+  transition: all 0.15s;
+}
+.step-tab:last-child { border-right: 1px solid #ddd; }
+.step-tab.active { background: #c0392b; color: #fff; border-color: #c0392b; }
+.step-tab:not(.active):hover { background: #ebebeb; }
 
-  /* STEP CONTENT */
-  .step-content { background: #fff; border: 1px solid #ddd; border-top: none; padding: 20px; margin-bottom: 20px; }
-  .step-content-title { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 6px; }
-  .step-content-subtitle { font-size: 13px; color: #c0392b; font-weight: bold; margin-bottom: 8px; }
-  .step-content ul { padding-left: 20px; margin-bottom: 10px; }
-  .step-content ul li { font-size: 13px; color: #333; margin-bottom: 4px; line-height: 1.5; }
-  .step-content p { font-size: 13px; color: #333; margin-bottom: 6px; line-height: 1.6; }
-  .step-content a { color: #1565c0; }
-  .download-btn { display: inline-flex; align-items: center; gap: 4px; background: #e8f0fe; border: 1px solid #1565c0; color: #1565c0; padding: 3px 10px; border-radius: 3px; font-size: 12px; cursor: pointer; }
+/* ===== STEP PANELS ===== */
+.step-panel {
+  display: none;
+  border: 1px solid #e0e0e0;
+  border-top: none;
+  padding: 26px 26px 20px;
+  background: #fff;
+  margin-bottom: 22px;
+}
+.step-panel.active { display: block; }
+.step-heading { font-size: 14px; font-weight: bold; color: #222; margin-bottom: 10px; }
+.step-prepare { font-size: 13px; font-weight: bold; color: #c0392b; margin-bottom: 8px; }
+.step-list { list-style: none; padding-left: 0; margin-bottom: 12px; }
+.step-list li {
+  font-size: 13px; color: #333;
+  margin-bottom: 7px;
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.65;
+}
+.step-list li::before { content: "•"; position: absolute; left: 0; }
+.step-text { font-size: 13px; color: #333; line-height: 1.7; margin-bottom: 6px; }
+.step-text a { color: #1565c0; }
+.dl-btn {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: #e8f0fe; border: 1px solid #90b8f8; color: #1a56db;
+  padding: 2px 10px; border-radius: 4px; font-size: 12px; cursor: pointer;
+  margin-left: 5px; vertical-align: middle;
+}
+.guide-link { color: #1565c0; font-size: 12px; margin-left: 8px; cursor: pointer; }
 
-  /* STEP IMAGE AREA */
-  .step-image-area { background: #fdf6e3; border: 1px solid #e8d5a3; border-radius: 6px; padding: 20px; margin-top: 16px; text-align: center; }
-  .step-image-header { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 16px; }
-  .police-logo-sm { width: 36px; height: 36px; background: #8b0000; border-radius: 50%; }
-  .step-image-header-title { font-size: 15px; font-weight: bold; color: #8b0000; text-transform: uppercase; }
-  .step-images { display: flex; gap: 16px; justify-content: center; }
-  .step-img-box { background: #fff; border: 2px solid #c0392b; border-radius: 4px; padding: 10px; width: 200px; text-align: center; position: relative; }
-  .step-img-box .step-num { position: absolute; top: -12px; left: -12px; width: 26px; height: 26px; background: #f39c12; border-radius: 4px; color: #fff; font-weight: bold; font-size: 14px; display: flex; align-items: center; justify-content: center; }
-  .step-img-box.red-bg { background: #8b0000; }
-  .step-img-box .img-placeholder { width: 100%; height: 100px; background: #f0f0f0; border-radius: 3px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; font-size: 11px; color: #aaa; }
-  .step-img-box.red-bg .img-placeholder { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); }
-  .step-img-box .caption { font-size: 11px; color: #555; line-height: 1.4; }
-  .step-img-box.red-bg .caption { color: #fff; }
-  .step-img-caption { font-size: 12px; color: #888; margin-top: 10px; font-style: italic; }
+/* ===== STEP IMAGE AREA ===== */
+.step-img-wrap {
+  background: #fdf8ec;
+  border: 1px solid #e8d5a3;
+  border-radius: 8px;
+  padding: 22px 24px 16px;
+  margin-top: 18px;
+}
+.simg-header {
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px; margin-bottom: 20px;
+}
+.simg-police-logo {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #4a7c2f, #1a4a0a);
+  border: 3px solid #c8a800; flex-shrink: 0;
+}
+.simg-title { font-size: 16px; font-weight: bold; color: #c0392b; text-transform: uppercase; letter-spacing: 0.5px; }
+.simg-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.simg-card {
+  border: 2px solid #c0392b;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+  position: relative;
+}
+.simg-card-num {
+  position: absolute; top: 0; left: 0;
+  width: 28px; height: 28px;
+  background: #f39c12; color: #fff;
+  font-weight: bold; font-size: 15px;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1;
+}
+.simg-card img { width: 100%; height: 140px; object-fit: cover; display: block; }
+.simg-img-ph {
+  width: 100%; height: 140px; background: #e8e8e8;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; color: #aaa;
+}
+.simg-card.dark { background: #8b0000; }
+.simg-card.dark .simg-img-ph { background: rgba(0,0,0,0.2); color: rgba(255,255,255,0.5); }
+.simg-caption {
+  padding: 10px 12px 12px;
+  font-size: 12px; color: #333;
+  text-align: center; line-height: 1.5;
+}
+.simg-card.dark .simg-caption { color: #fff; }
+.simg-footnote { text-align: center; font-size: 12px; color: #999; margin-top: 12px; font-style: italic; }
 
-  /* NOTE BOX */
-  .note-box { background: #e8f4fd; border: 1px solid #b8d9f0; border-radius: 4px; padding: 14px 18px; margin-bottom: 20px; display: flex; gap: 10px; }
-  .note-icon { color: #e67e22; font-size: 18px; margin-top: 1px; flex-shrink: 0; }
-  .note-box ul { padding-left: 18px; }
-  .note-box ul li { font-size: 13px; color: #333; margin-bottom: 4px; line-height: 1.5; }
+/* Inline image for other steps */
+.step-full-img {
+  width: 100%; max-width: 100%;
+  border-radius: 6px; border: 1px solid #e0e0e0;
+  display: block; margin: 0 auto;
+}
 
-  /* DOWNLOAD ROW */
-  .download-row { background: #fff; border: 1px solid #ddd; border-radius: 4px; padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px; font-size: 13px; color: #333; }
-  .download-row-btn { background: #c0392b; color: #fff; border: none; border-radius: 4px; padding: 8px 18px; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+/* ===== NOTE BOX ===== */
+.note-box {
+  background: #e8f4fd;
+  border: 1px solid #b6d9f5;
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin-top: 20px;
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.note-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.note-title { font-size: 13px; font-weight: bold; color: #333; margin-bottom: 6px; }
+.note-list { list-style: none; padding-left: 0; }
+.note-list li {
+  font-size: 13px; color: #333;
+  margin-bottom: 5px; padding-left: 16px;
+  position: relative; line-height: 1.6;
+}
+.note-list li::before { content: "•"; position: absolute; left: 0; }
 
-  /* GUIDE SECTION */
-  .guide-section { margin-bottom: 30px; }
-  .guide-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
-  .guide-header h2 { font-size: 18px; font-weight: bold; color: #333; }
-  .guide-header a { color: #c0392b; font-size: 13px; }
-  .guide-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-  .guide-card { background: #fff; border: 1px solid #ddd; border-radius: 4px; overflow: hidden; }
-  .guide-card-thumb { width: 100%; height: 110px; background: #8b0000; display: flex; align-items: center; justify-content: center; }
-  .guide-card-thumb svg { width: 40px; height: 40px; fill: rgba(255,255,255,0.4); }
-  .guide-card-body { padding: 10px; }
-  .guide-card-title { font-size: 13px; color: #333; margin-bottom: 10px; line-height: 1.4; min-height: 38px; }
-  .guide-card-btns { display: flex; gap: 6px; flex-wrap: wrap; }
-  .btn-detail { background: #c0392b; color: #fff; border: none; border-radius: 3px; padding: 5px 10px; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 4px; }
-  .btn-video { background: #fff; color: #333; border: 1px solid #ccc; border-radius: 3px; padding: 5px 10px; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 4px; }
+/* ===== DOWNLOAD BANNER ===== */
+.dl-banner {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 14px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 36px;
+  background: #fff;
+  font-size: 13px; color: #333;
+}
+.dl-banner-btn {
+  background: #c0392b; color: #fff;
+  border: none; border-radius: 5px;
+  padding: 9px 22px; font-size: 13px; font-weight: bold;
+  cursor: pointer; display: flex; align-items: center; gap: 6px;
+}
 
-  /* APP BANNER */
-  .app-banner { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 30px; }
-  .app-card { background: #1565c0; border-radius: 6px; padding: 16px 20px; display: flex; align-items: center; gap: 14px; color: #fff; }
-  .app-logo { font-size: 22px; font-weight: bold; line-height: 1; }
-  .app-logo span { color: #ffd700; }
-  .app-title { font-size: 13px; font-weight: bold; line-height: 1.4; text-transform: uppercase; }
-  .app-store-btns { margin-left: auto; display: flex; flex-direction: column; gap: 6px; }
-  .app-store-btns img { height: 26px; }
-  .app-store-placeholder { background: rgba(255,255,255,0.2); border-radius: 4px; padding: 4px 10px; font-size: 11px; color: #fff; text-align: center; }
-  .qr-placeholder { width: 50px; height: 50px; background: #fff; border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #333; text-align: center; }
+/* ===== GUIDE CARDS ===== */
+.guide-section { margin-bottom: 28px; }
+.guide-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.guide-row h2 { font-size: 18px; font-weight: bold; color: #222; }
+.guide-row a { color: #c0392b; font-size: 13px; }
+.guide-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.guide-card { background: #fff; border: 1px solid #e0e0e0; border-radius: 6px; overflow: hidden; }
+.guide-thumb {
+  width: 100%; height: 112px;
+  background: linear-gradient(145deg, #700000, #b02020);
+  display: flex; align-items: center; justify-content: center;
+}
+.guide-thumb svg { width: 44px; height: 44px; fill: rgba(255,255,255,0.32); }
+.guide-body { padding: 10px 12px 12px; }
+.guide-name { font-size: 13px; color: #222; margin-bottom: 10px; min-height: 38px; line-height: 1.45; }
+.guide-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+.btn-red {
+  background: #c0392b; color: #fff;
+  border: none; border-radius: 4px;
+  padding: 6px 12px; font-size: 12px; cursor: pointer;
+  display: flex; align-items: center; gap: 4px;
+}
+.btn-outline {
+  background: #fff; color: #333;
+  border: 1px solid #ccc; border-radius: 4px;
+  padding: 6px 12px; font-size: 12px; cursor: pointer;
+  display: flex; align-items: center; gap: 4px;
+}
 
-  /* FOOTER */
-  footer { background: #1a1a2e; color: #ccc; padding: 30px 0 10px; }
-  .footer-inner { display: grid; grid-template-columns: 1.5fr 1fr 1.5fr; gap: 30px; margin-bottom: 20px; }
-  .footer-logo-area { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
-  .footer-police-logo { width: 50px; height: 50px; background: #8b0000; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ffd700; font-size: 8px; font-weight: bold; text-align: center; }
-  .footer-org-name { font-weight: bold; color: #fff; font-size: 13px; text-transform: uppercase; }
-  .footer-col-title { font-size: 14px; font-weight: bold; color: #ffd700; margin-bottom: 12px; text-transform: uppercase; }
-  .footer-links { list-style: none; }
-  .footer-links li { margin-bottom: 8px; font-size: 13px; display: flex; align-items: flex-start; gap: 6px; }
-  .footer-links li::before { content: "›"; color: #c0392b; font-size: 16px; line-height: 1; flex-shrink: 0; }
-  .footer-contact-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 10px; font-size: 13px; }
-  .contact-icon { width: 22px; height: 22px; background: #c0392b; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .contact-icon svg { width: 12px; height: 12px; fill: #fff; }
-  .footer-bottom { border-top: 1px solid #333; padding-top: 12px; text-align: center; font-size: 12px; color: #777; }
-  .footer-bottom span { color: #c0392b; font-weight: bold; }
+/* ===== APP BANNERS ===== */
+.app-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 0; }
+.app-banner {
+  background: #1d5fa8;
+  border-radius: 8px;
+  padding: 16px 20px;
+  display: flex; align-items: center; gap: 16px;
+  color: #fff;
+}
+.app-icon-box {
+  width: 36px; height: 36px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.app-icon-box svg { width: 22px; height: 22px; fill: #fff; }
+.app-brand-name { font-size: 20px; font-weight: bold; line-height: 1; margin-bottom: 3px; }
+.app-brand-name .y { color: #ffd700; }
+.app-tagline { font-size: 11px; font-weight: bold; text-transform: uppercase; line-height: 1.5; }
+.app-right { margin-left: auto; display: flex; gap: 10px; align-items: center; }
+.app-qr-box {
+  width: 54px; height: 54px; background: #fff;
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; color: #333; text-align: center; line-height: 1.4;
+  flex-shrink: 0;
+}
+.app-stores { display: flex; flex-direction: column; gap: 5px; }
+.store-tag {
+  background: rgba(0,0,0,0.25);
+  color: #fff; border-radius: 4px;
+  padding: 4px 10px; font-size: 11px;
+  text-align: center; white-space: nowrap;
+}
+.app-dl-label { font-size: 9px; color: rgba(255,255,255,0.7); text-align: right; margin-bottom: 3px; text-transform: uppercase; }
 
-  @media (max-width: 700px) {
-    .guide-cards { grid-template-columns: 1fr 1fr; }
-    .app-banner { grid-template-columns: 1fr; }
-    .footer-inner { grid-template-columns: 1fr; }
-    .step-images { flex-direction: column; align-items: center; }
-    .info-card-steps { flex-wrap: wrap; }
-  }
+/* ===== RED DIVIDER ===== */
+.red-divider { height: 6px; background: #c0392b; margin-top: 30px; }
+
+/* ===== FOOTER ===== */
+footer {
+  background: linear-gradient(180deg, #4a0000 0%, #1a0000 100%);
+  color: #ccc;
+  padding: 36px 0 0;
+}
+.footer-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 40px;
+  display: grid; grid-template-columns: 1.6fr 1fr 1.6fr;
+  gap: 40px; margin-bottom: 28px;
+}
+.footer-logo-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.footer-org { font-size: 13px; font-weight: bold; color: #fff; text-transform: uppercase; }
+.footer-col-title { font-size: 13px; font-weight: bold; color: #f5c518; margin-bottom: 14px; text-transform: uppercase; }
+.footer-links { list-style: none; }
+.footer-links li {
+  margin-bottom: 10px; display: flex;
+  align-items: flex-start; gap: 8px;
+  font-size: 13px; color: #ccc;
+}
+.footer-links li::before { content: "›"; color: #c0392b; font-size: 18px; line-height: 1.1; flex-shrink: 0; }
+.fc-item { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 14px; }
+.fc-ico {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #c0392b;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.fc-ico svg { width: 13px; height: 13px; fill: #fff; }
+.fc-lbl { font-size: 11px; color: #f5c518; margin-bottom: 2px; }
+.fc-val { font-size: 13px; color: #ccc; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  text-align: center; padding: 12px 0;
+  font-size: 12px; color: #777;
+}
+.footer-bottom span { color: #e74c3c; font-weight: bold; }
+
+@media (max-width: 768px) {
+  .header { padding: 0 16px; }
+  .main { padding: 16px 16px 40px; }
+  .guide-grid { grid-template-columns: 1fr 1fr; }
+  .app-row { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; padding: 0 16px; }
+  .simg-cards { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
 
-<!-- BREADCRUMB -->
-<div class="breadcrumb">
-  <div class="container">
-    <a href="#">Trang chủ</a>
-    <span class="sep">›</span>
-    <span class="current">Đăng ký tạm trú trực tuyến</span>
-  </div>
+<!-- HEADER -->
+<div class="header">
+  <svg class="header-logo" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="40" cy="40" r="38" fill="#2d6a1f" stroke="#c8a800" stroke-width="4"/>
+    <circle cx="40" cy="40" r="27" fill="#1a4a0a" stroke="#c8a800" stroke-width="2"/>
+    <polygon points="40,13 43.5,28 59,28 46.5,37 51,52 40,43 29,52 33.5,37 21,28 36.5,28" fill="#c8a800"/>
+    <circle cx="40" cy="40" r="7" fill="#c0392b" stroke="#ffd700" stroke-width="1.5"/>
+  </svg>
+  <nav class="nav">
+    <a href="#">Tiếp nhận phản ánh</a>
+    <a href="#">Hướng dẫn</a>
+    <a href="#" class="active">Đăng ký tạm trú trực tuyến</a>
+  </nav>
+  <button class="hotline-btn">
+    <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:#fff;flex-shrink:0;">
+      <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.32.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.01L6.6 10.8z"/>
+    </svg>
+    <div>
+      <div class="hl-label">Đường dây nóng:</div>
+      <div class="hl-num">0234 3823 530</div>
+    </div>
+  </button>
 </div>
 
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="#">Trang chủ</a>
+  <span class="sep">›</span>
+  <span class="current">Đăng ký tạm trú trực tuyến</span>
+</div>
+
+<!-- MAIN -->
 <div class="main">
-  <div class="container">
 
-    <!-- PAGE TITLE -->
-    <div class="page-title-box">
-      <div class="page-title-icon">
-        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+  <!-- Title -->
+  <div class="page-title-row">
+    <div class="title-icon">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+    </div>
+    <h1 class="page-title">Hướng dẫn đăng ký tạm trú trực tuyến dành cho người thuê, mượn, ở nhờ</h1>
+  </div>
+  <p class="page-subtitle">Bạn có thể đăng ký tạm trú trực tuyến qua ứng dụng <strong>VNEID</strong> hoặc Cổng dịch vụ công Bộ Công an.</p>
+
+  <!-- Method tabs -->
+  <!-- <div class="method-tabs">
+    <div class="method-tab active" onclick="switchMethod(this)">CÁCH 1</div>
+    <div class="method-tab" onclick="switchMethod(this)">CÁCH 2 (ĐANG HOÀN THIỆN)</div>
+  </div> -->
+
+  <!-- Link card -->
+  <div class="link-card">
+    <div class="link-card-title">ĐĂNG KÝ TẠM TRÚ</div>
+    <div class="link-card-label">Truy cập:</div>
+    <div class="link-row">
+      <input class="link-input" id="linkInput" type="text" value="https://dichvucong.bocongan.gov.vn" readonly>
+      <button class="icon-btn" onclick="copyLink()" title="Sao chép">
+        <svg viewBox="0 0 24 24"><path fill="#777" d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+      </button>
+      <button class="icon-btn red" onclick="window.open('https://dichvucong.bocongan.gov.vn','_blank')" title="Mở liên kết">
+        <svg viewBox="0 0 24 24"><path fill="#fff" d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Steps section -->
+  <div class="step-section-title">Nội dung hướng dẫn đăng ký tạm trú</div>
+  <div class="step-tabs">
+    <div class="step-tab active" onclick="switchStep(0)">Bước 1</div>
+    <div class="step-tab" onclick="switchStep(1)">Bước 2</div>
+    <div class="step-tab" onclick="switchStep(2)">Bước 3</div>
+    <div class="step-tab" onclick="switchStep(3)">Bước 4</div>
+    <div class="step-tab" onclick="switchStep(4)">Bước 5</div>
+  </div>
+
+  <!-- BƯỚC 1 -->
+  <div class="step-panel active" id="panel-0">
+    <div class="step-heading">Bước 1: Truy cập website https://dichvucong.bocongan.gov.vn và đăng nhập</div>
+    <div class="step-prepare">Chuẩn bị các tài liệu, gồm:</div>
+    <ul class="step-list">
+      <li>
+        Tờ khai thay đổi thông tin cư trú - CT01
+        <button class="dl-btn" onclick="window.open('mẫu_tạm_trú.doc')">⬇ Tải mẫu</button>
+        <a class="guide-link" href="hướng_dẫn_điền.png" target="_blank">ⓘ Hướng dẫn điền</a>
+      </li>
+      <li>Giấy chứng nhận quyền sử dụng đất, giấy xác nhận chỗ ở hợp pháp hoặc giấy cam kết có chỗ ở hợp pháp</li>
+      <li>Hợp đồng thuê trọ</li>
+    </ul>
+    <p class="step-text">Truy cập website <a href="https://dichvucong.bocongan.gov.vn" target="_blank">dichvucong.bocongan.gov.vn</a> sau đó nhấn Đăng nhập.</p>
+    <p class="step-text">Đăng nhập tài khoản theo số định danh và mật khẩu VNeID. Hoặc mở ứng dụng VNeID quét mã QR để đăng nhập nhanh chóng.</p>
+    <div class="step-img-wrap">
+      <div class="simg-header">
+        <svg width="40" height="40" viewBox="0 0 80 80">
+          <circle cx="40" cy="40" r="38" fill="#2d6a1f" stroke="#c8a800" stroke-width="4"/>
+          <polygon points="40,13 43.5,28 59,28 46.5,37 51,52 40,43 29,52 33.5,37 21,28 36.5,28" fill="#c8a800"/>
+          <circle cx="40" cy="40" r="7" fill="#c0392b" stroke="#ffd700" stroke-width="1.5"/>
+        </svg>
+        <div class="simg-title">Cổng dịch vụ công Bộ Công An</div>
       </div>
-      <h1 class="page-title">Hướng dẫn đăng ký tạm trú trực tuyến dành cho người thuê, mượn, ở nhờ</h1>
-    </div>
-    <p class="page-subtitle">Bạn có thể đăng ký tạm trú trực tuyến qua ứng dụng <strong>VNeID</strong> hoặc Cổng dịch vụ công Bộ Công an.</p>
-
-    <!-- TABS -->
-    <div class="tabs">
-      <div class="tab active">CÁCH 1</div>
-      <div class="tab">CÁCH 2 (ĐANG HOÀN THIỆN)</div>
-    </div>
-
-    <!-- INFO CARD -->
-    <div class="info-card">
-      <div class="info-card-title">ĐĂNG KÝ TẠM TRÚ</div>
-      <div style="font-size:12px;color:#888;margin-bottom:10px;">Truy cập:</div>
-      <div class="info-card-steps">
-        <div class="info-card-logo">
-          <div class="info-card-logo-placeholder">CÔNG AN<br>NHÂN DÂN</div>
+      <div class="simg-cards">
+        <div class="simg-card">
+          <div class="simg-card-num">1</div>
+          <img src="bước_1.jpg" alt="Bước 1" onerror="this.parentNode.querySelector('.simg-img-ph').style.display='flex';this.style.display='none'">
+          <div class="simg-img-ph" style="display:none;">🖥️ Website dichvucong</div>
+          <div class="simg-caption">Truy cập website:<br><strong>https://dichvucong.bocongan.gov.vn</strong><br>sau đó nhấn Đăng nhập</div>
         </div>
-        <div class="step-arrow">
-          <span>→</span> Tiếp nhận phản ánh
-          <span>→</span> Hướng dẫn
-          <span>→</span> <span class="step-link">Đăng ký tạm trú trực tuyến</span>
+        <div class="simg-card">
+          <div class="simg-card-num">2</div>
+          <div class="simg-img-ph">📱 Màn hình đăng nhập VNeID</div>
+          <div class="simg-caption">Vào đăng nhập tài khoản theo số định danh và mật khẩu VNeID. Hoặc mở ứng dụng VNeID quét mã QR để đăng nhập nhanh chóng</div>
         </div>
-        <button class="hotline-btn" style="margin-left:auto;">
-          <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
-          Đường dây nóng:<br>0234 3822 530
-        </button>
+        <div class="simg-card dark">
+          <div class="simg-card-num" style="background:#c0392b;">3</div>
+          <div class="simg-img-ph">📲 Đăng nhập VNeID</div>
+          <div class="simg-caption">Nhập số CCCD và mật khẩu VNeID hoặc quét mã QR để đăng nhập</div>
+        </div>
       </div>
+      <div class="simg-footnote">Hình ảnh minh họa bước 1</div>
     </div>
-
-    <!-- STEPS -->
-    <div class="steps-label">Nội dung hướng dẫn đăng ký tạm trú</div>
-    <div class="step-tabs">
-      <div class="step-tab active">Bước 1</div>
-      <div class="step-tab">Bước 2</div>
-      <div class="step-tab">Bước 3</div>
-      <div class="step-tab">Bước 4</div>
-      <div class="step-tab">Bước 5</div>
-    </div>
-
-    <div class="step-content">
-      <div class="step-content-title">Bước 1: Truy cập website https://dichvucong.bocongan.gov.vn và đăng nhập</div>
-      <div class="step-content-subtitle">Chuẩn bị các tài liệu, gồm:</div>
-      <ul>
-        <li>
-          Tờ khai thay đổi thông tin cư trú: CT01
-          <span class="download-btn">⬇ Tải mẫu</span>
-          &nbsp; ⓘ Hướng dẫn điền
-        </li>
-        <li>Giấy chứng nhận quyền sở dụng đất, giấy xác nhận chỗ ở hợp pháp hoặc giấy cam kết có chỗ ở hợp pháp</li>
-        <li>Hợp đồng thuê trọ</li>
-      </ul>
-      <p>Truy cập website <a href="#">dichvucong.bocongan.gov.vn</a> sau đó nhấn Đăng nhập.</p>
-      <p>Đăng nhập tài khoản theo số định danh và mật khẩu VneID. Hoặc mở ứng dụng VneID quét mã QR để đăng nhập nhanh chóng.</p>
-
-      <div class="step-image-area">
-        <div class="step-image-header">
-          <div class="police-logo-sm"></div>
-          <div class="step-image-header-title">🛡️ Cổng dịch vụ công Bộ Công An</div>
-        </div>
-        <div class="step-images">
-          <div class="step-img-box">
-            <div class="step-num">1</div>
-            <div class="img-placeholder">🖥️<br>Giao diện website</div>
-            <div class="caption">Truy cập website:<br>https://dichvucong.bocongan.gov.vn<br>sau đó nhấn Đăng nhập</div>
-          </div>
-          <div class="step-img-box">
-            <div class="step-num">2</div>
-            <div class="img-placeholder">📱<br>Màn hình đăng nhập</div>
-            <div class="caption">Vào đăng nhập tài khoản theo số định danh và mật khẩu VneID. Hoặc mở ứng dụng VneID quét mã QR để đăng nhập nhanh chóng</div>
-          </div>
-          <div class="step-img-box red-bg">
-            <div class="step-num" style="background:#c0392b;">3</div>
-            <div class="img-placeholder">📲<br>Ứng dụng VneID</div>
-            <div class="caption">Nhập số CCCD và mật khẩu VneID hoặc quét mã QR để đăng nhập</div>
-          </div>
-        </div>
-        <div class="step-img-caption">Hình ảnh minh họa bước 1</div>
-      </div>
-    </div>
-
-    <!-- NOTE BOX -->
     <div class="note-box">
       <div class="note-icon">⚠️</div>
       <div>
-        <strong>Lưu ý</strong>
-        <ul>
+        <div class="note-title">Lưu ý</div>
+        <ul class="note-list">
           <li>Người đăng ký cần có tài khoản định danh điện tử mức 2 trên ứng dụng VNeID hoặc tài khoản Cổng dịch vụ công.</li>
           <li>Hồ sơ điện tử có giá trị pháp lý tương đương hồ sơ giấy.</li>
           <li>Thời gian xử lý: 3-5 ngày làm việc kể từ ngày nhận đủ hồ sơ hợp lệ.</li>
@@ -254,173 +522,277 @@
         </ul>
       </div>
     </div>
+  </div>
 
-    <!-- DOWNLOAD ROW -->
-    <div class="download-row">
-      <span>Tải tài liệu mẫu thủ tục: Khai báo tạm trú</span>
-      <button class="download-row-btn">⬇ Tải về</button>
+  <!-- BƯỚC 2 -->
+  <div class="step-panel" id="panel-1">
+    <div class="step-heading">Bước 2: Chọn cơ quan thực hiện và hình thức đăng ký</div>
+    <ul class="step-list">
+      <li>Chọn cơ quan thực hiện <strong>"THÀNH PHỐ HUẾ"</strong> → <strong>"PHƯỜNG THUẬN HOÁ"</strong>.</li>
+      <li>Lựa chọn đăng ký <strong>"LẬP HỘ MỚI"</strong> → <strong>"Đăng ký tạm trú (nhân khẩu, hộ)"</strong>.</li>
+    </ul>
+    <div class="step-img-wrap" style="padding:16px;">
+      <img src="bước_2.png" alt="Bước 2" class="step-full-img" onerror="this.style.display='none'">
+      <div class="simg-footnote" style="margin-top:10px;">Hình ảnh minh họa bước 2</div>
     </div>
-
-    <!-- GUIDE SECTION -->
-    <div class="guide-section">
-      <div class="guide-header">
-        <h2>Hướng dẫn</h2>
-        <a href="#">Xem thêm</a>
-      </div>
-      <div class="guide-cards">
-        <div class="guide-card">
-          <div class="guide-card-thumb">
-            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 13h8v1H8v-1zm0 2h8v1H8v-1zm0-4h3v1H8v-1z"/></svg>
-          </div>
-          <div class="guide-card-body">
-            <div class="guide-card-title">Hướng dẫn đăng ký lưu trú</div>
-            <div class="guide-card-btns">
-              <button class="btn-detail">📄 Xem chi tiết</button>
-            </div>
-          </div>
-        </div>
-        <div class="guide-card">
-          <div class="guide-card-thumb">
-            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 13h8v1H8v-1zm0 2h8v1H8v-1zm0-4h3v1H8v-1z"/></svg>
-          </div>
-          <div class="guide-card-body">
-            <div class="guide-card-title">Hướng dẫn đăng ký tạm trú trực tuyến</div>
-            <div class="guide-card-btns">
-              <button class="btn-detail">📄 Xem chi tiết</button>
-              <button class="btn-video">▶ Xem video</button>
-            </div>
-          </div>
-        </div>
-        <div class="guide-card">
-          <div class="guide-card-thumb">
-            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 13h8v1H8v-1zm0 2h8v1H8v-1zm0-4h3v1H8v-1z"/></svg>
-          </div>
-          <div class="guide-card-body">
-            <div class="guide-card-title">Hướng dẫn làm căn cước công dân gắn chip</div>
-            <div class="guide-card-btns">
-              <button class="btn-detail">📄 Xem chi tiết</button>
-              <button class="btn-video">▶ Xem video</button>
-            </div>
-          </div>
-        </div>
-        <div class="guide-card">
-          <div class="guide-card-thumb">
-            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 13h8v1H8v-1zm0 2h8v1H8v-1zm0-4h3v1H8v-1z"/></svg>
-          </div>
-          <div class="guide-card-body">
-            <div class="guide-card-title">Hướng dẫn tách hộ khẩu</div>
-            <div class="guide-card-btns">
-              <button class="btn-detail">📄 Xem chi tiết</button>
-            </div>
-          </div>
-        </div>
+    <div class="note-box">
+      <div class="note-icon">⚠️</div>
+      <div>
+        <div class="note-title">Lưu ý</div>
+        <ul class="note-list">
+          <li>Người đăng ký cần có tài khoản định danh điện tử mức 2 trên ứng dụng VNeID hoặc tài khoản Cổng dịch vụ công.</li>
+          <li>Hồ sơ điện tử có giá trị pháp lý tương đương hồ sơ giấy.</li>
+          <li>Thời gian xử lý: 3-5 ngày làm việc kể từ ngày nhận đủ hồ sơ hợp lệ.</li>
+          <li>Phí, lệ phí: Miễn phí theo quy định.</li>
+        </ul>
       </div>
     </div>
+  </div>
 
-    <!-- APP BANNER -->
+  <!-- BƯỚC 3 -->
+  <div class="step-panel" id="panel-2">
+    <div class="step-heading">Bước 3: Nhập địa chỉ tạm trú</div>
+    <p class="step-text" style="margin-bottom:10px;">Chọn 1 trong 2 hình thức:</p>
+    <ul class="step-list">
+      <li>Nếu đăng ký cho bản thân → Chọn <strong>"Người khai thông tin là người Đăng ký tạm trú"</strong></li>
+      <li>Nếu khai hộ: Nhập thông tin cá nhân của người đăng ký tạm trú</li>
+    </ul>
+    <p class="step-text">Nhập địa chỉ (chỉ nhập số nhà + tên đường), không cần nhập tên phường, thành phố.</p>
+    <p class="step-text" style="color:#c0392b;font-weight:bold;margin-top:8px;">LƯU Ý: TẤT CẢ THÔNG TIN ĐIỀN BÊN DƯỚI ĐỀU LÀ VÍ DỤ MINH HỌA.</p>
+    <div class="step-img-wrap" style="padding:16px;margin-top:16px;">
+      <img src="bước_3.jpg" alt="Bước 3" class="step-full-img" onerror="this.style.display='none'">
+      <div class="simg-footnote" style="margin-top:10px;">Hình ảnh minh họa bước 3</div>
+    </div>
+    <div class="note-box">
+      <div class="note-icon">⚠️</div>
+      <div>
+        <div class="note-title">Lưu ý</div>
+        <ul class="note-list">
+          <li>Người đăng ký cần có tài khoản định danh điện tử mức 2 trên ứng dụng VNeID hoặc tài khoản Cổng dịch vụ công.</li>
+          <li>Hồ sơ điện tử có giá trị pháp lý tương đương hồ sơ giấy.</li>
+          <li>Thời gian xử lý: 3-5 ngày làm việc kể từ ngày nhận đủ hồ sơ hợp lệ.</li>
+          <li>Phí, lệ phí: Miễn phí theo quy định.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- BƯỚC 4 -->
+  <div class="step-panel" id="panel-3">
+    <div class="step-heading">Bước 4: Tải lên giấy tờ</div>
+    <p class="step-text" style="margin-bottom:8px;">Hồ sơ đính kèm: Lựa chọn trường hợp <strong>"Đăng ký tạm trú tại chỗ ở hợp pháp do thuê, mượn, ở nhờ"</strong>.</p>
+    <p class="step-text" style="margin-bottom:8px;">Tải lên ảnh chụp:</p>
+    <ul class="step-list">
+      <li>
+        Tờ khai thay đổi thông tin cư trú - CT01
+        <button class="dl-btn" onclick="window.open('mẫu_tạm_trú.doc')">⬇ Tải mẫu</button>
+        <a class="guide-link" href="hướng_dẫn_điền.png" target="_blank">ⓘ Hướng dẫn điền</a>
+      </li>
+      <li>Giấy chứng nhận quyền sử dụng đất; giấy xác nhận chỗ ở hợp pháp hoặc giấy cam kết có chỗ ở hợp pháp (đối với trường hợp chủ cơ sở không có giấy chứng nhận quyền sử dụng đất)</li>
+      <li>Hợp đồng thuê trọ</li>
+    </ul>
+    <div class="step-img-wrap" style="padding:16px;margin-top:16px;">
+      <img src="bước_4.png" alt="Bước 4" class="step-full-img" onerror="this.style.display='none'">
+      <div class="simg-footnote" style="margin-top:10px;">Hình ảnh minh họa bước 4</div>
+    </div>
+    <div class="note-box">
+      <div class="note-icon">⚠️</div>
+      <div>
+        <div class="note-title">Lưu ý</div>
+        <ul class="note-list">
+          <li>Người đăng ký cần có tài khoản định danh điện tử mức 2 trên ứng dụng VNeID hoặc tài khoản Cổng dịch vụ công.</li>
+          <li>Hồ sơ điện tử có giá trị pháp lý tương đương hồ sơ giấy.</li>
+          <li>Thời gian xử lý: 3-5 ngày làm việc kể từ ngày nhận đủ hồ sơ hợp lệ.</li>
+          <li>Phí, lệ phí: Miễn phí theo quy định.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- BƯỚC 5 -->
+  <div class="step-panel" id="panel-4">
+    <div class="step-heading">Bước 5: Xác nhận và nộp hồ sơ</div>
+    <ul class="step-list">
+      <li>Kiểm tra lại chính xác thông tin. Nhấn vào xác nhận <strong>"Tôi xin chịu trách nhiệm trước pháp luật về lời khai trên"</strong> và nhấn vào <strong>"Nộp hồ sơ"</strong>.</li>
+      <li>Quét mã QR để thanh toán lệ phí <strong>7.000 đồng</strong>. Trở về lại trình duyệt Web để kiểm tra hồ sơ thành công.</li>
+    </ul>
+    <div class="step-img-wrap" style="padding:16px;margin-top:16px;">
+      <img src="bước_5.jpg" alt="Bước 5" class="step-full-img" onerror="this.style.display='none'">
+      <div class="simg-footnote" style="margin-top:10px;">Hình ảnh minh họa bước 5</div>
+    </div>
+    <div class="note-box">
+      <div class="note-icon">⚠️</div>
+      <div>
+        <div class="note-title">Lưu ý</div>
+        <ul class="note-list">
+          <li>Người đăng ký cần có tài khoản định danh điện tử mức 2 trên ứng dụng VNeID hoặc tài khoản Cổng dịch vụ công.</li>
+          <li>Hồ sơ điện tử có giá trị pháp lý tương đương hồ sơ giấy.</li>
+          <li>Thời gian xử lý: 3-5 ngày làm việc kể từ ngày nhận đủ hồ sơ hợp lệ.</li>
+          <li>Phí, lệ phí: Miễn phí theo quy định.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Download banner -->
+  <div class="dl-banner">
+    <span>Tải tài liệu mẫu thủ tục: Khai báo tạm trú</span>
+    <button class="dl-banner-btn" onclick="window.open('mẫu_tạm_trú.doc')">⬇ Tải về</button>
+  </div>
+
+  <!-- Guide section -->
+  <div class="guide-section">
+    <div class="guide-row">
+      <h2>Hướng dẫn</h2>
+      <a href="#">Xem thêm</a>
+    </div>
+    <div class="guide-grid">
+      <div class="guide-card">
+        <div class="guide-thumb">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 13h8v1H8zm0 3h8v1H8zm0-6h3v1H8z"/></svg>
+        </div>
+        <div class="guide-body">
+          <div class="guide-name">Hướng dẫn đăng ký lưu trú</div>
+          <div class="guide-btns"><button class="btn-red">📄 Xem chi tiết</button></div>
+        </div>
+      </div>
+      <div class="guide-card">
+        <div class="guide-thumb">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 13h8v1H8zm0 3h8v1H8zm0-6h3v1H8z"/></svg>
+        </div>
+        <div class="guide-body">
+          <div class="guide-name">Hướng dẫn đăng ký tạm trú trực tuyến</div>
+          <div class="guide-btns">
+            <button class="btn-red">📄 Xem chi tiết</button>
+            <button class="btn-outline">▶ Xem video</button>
+          </div>
+        </div>
+      </div>
+      <div class="guide-card">
+        <div class="guide-thumb">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 13h8v1H8zm0 3h8v1H8zm0-6h3v1H8z"/></svg>
+        </div>
+        <div class="guide-body">
+          <div class="guide-name">Hướng dẫn làm căn cước công dân gắn chip</div>
+          <div class="guide-btns">
+            <button class="btn-red">📄 Xem chi tiết</button>
+            <button class="btn-outline">▶ Xem video</button>
+          </div>
+        </div>
+      </div>
+      <div class="guide-card">
+        <div class="guide-thumb">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 13h8v1H8zm0 3h8v1H8zm0-6h3v1H8z"/></svg>
+        </div>
+        <div class="guide-body">
+          <div class="guide-name">Hướng dẫn tách hộ khẩu</div>
+          <div class="guide-btns"><button class="btn-red">📄 Xem chi tiết</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- App banners -->
+  <div class="app-row">
     <div class="app-banner">
-      <div class="app-card">
-        <div>
-          <div style="font-size:11px;color:#aad4f5;margin-bottom:4px;">🔖 TIỆN ÍCH HÀNH CHÍNH</div>
-          <div style="font-size:20px;font-weight:bold;color:#fff;margin-bottom:2px;"><span style="color:#ffd700;">Chi</span>1<span style="color:#ffd700;">Chạm</span></div>
-          <div style="font-size:11px;font-weight:bold;text-transform:uppercase;line-height:1.5;">QUẢN LÝ TRỢ<br>TRONG TẦM TAY</div>
-        </div>
-        <div style="margin-left:auto;display:flex;gap:10px;align-items:center;">
-          <div class="qr-placeholder">QR<br>Code</div>
-          <div style="display:flex;flex-direction:column;gap:6px;">
-            <div class="app-store-placeholder">🍎 App Store</div>
-            <div class="app-store-placeholder">▶ Google Play</div>
-          </div>
-        </div>
+      <div class="app-icon-box">
+        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
       </div>
-      <div class="app-card">
-        <div>
-          <div style="font-size:11px;color:#aad4f5;margin-bottom:4px;">🔖 TIỆN ÍCH HÀNH CHÍNH</div>
-          <div style="font-size:20px;font-weight:bold;color:#fff;margin-bottom:2px;"><span style="color:#ffd700;">Chi</span>1<span style="color:#ffd700;">Chạm</span></div>
-          <div style="font-size:11px;font-weight:bold;text-transform:uppercase;line-height:1.5;">QUẢN LÝ TRỢ<br>TRONG TẦM TAY</div>
-        </div>
-        <div style="margin-left:auto;display:flex;gap:10px;align-items:center;">
-          <div class="qr-placeholder">QR<br>Code</div>
-          <div style="display:flex;flex-direction:column;gap:6px;">
-            <div class="app-store-placeholder">🍎 App Store</div>
-            <div class="app-store-placeholder">▶ Google Play</div>
-          </div>
+      <div>
+        <div class="app-dl-label">TẢI APP TROMOI HOẠT NGAY</div>
+        <div class="app-brand-name"><span class="y">Chi</span>1<span class="y">Chạm</span></div>
+        <div class="app-tagline">QUẢN LÝ TRỌ<br>TRONG TẦM TAY</div>
+      </div>
+      <div class="app-right">
+        <div class="app-qr-box">QR<br>Code</div>
+        <div class="app-stores">
+          <div class="store-tag">🍎 App Store</div>
+          <div class="store-tag">▶ Google Play</div>
         </div>
       </div>
     </div>
+    <div class="app-banner">
+      <div class="app-icon-box">
+        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      </div>
+      <div>
+        <div class="app-dl-label">TẢI APP TROMOI HOẠT NGAY</div>
+        <div class="app-brand-name"><span class="y">Chi</span>1<span class="y">Chạm</span></div>
+        <div class="app-tagline">QUẢN LÝ TRỌ<br>TRONG TẦM TAY</div>
+      </div>
+      <div class="app-right">
+        <div class="app-qr-box">QR<br>Code</div>
+        <div class="app-stores">
+          <div class="store-tag">🍎 App Store</div>
+          <div class="store-tag">▶ Google Play</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  </div><!-- /container -->
 </div><!-- /main -->
+
+<div class="red-divider"></div>
 
 <!-- FOOTER -->
 <footer>
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-logo-area">
-        <div class="footer-police-logo">CÔNG AN<br>NHÂN DÂN</div>
-        <div class="footer-org-name">Công an phường Thuận Hòa</div>
+  <div class="footer-inner">
+    <div class="footer-logo-wrap">
+      <svg width="58" height="58" viewBox="0 0 80 80">
+        <circle cx="40" cy="40" r="38" fill="#2d6a1f" stroke="#c8a800" stroke-width="4"/>
+        <circle cx="40" cy="40" r="27" fill="#1a4a0a" stroke="#c8a800" stroke-width="2"/>
+        <polygon points="40,13 43.5,28 59,28 46.5,37 51,52 40,43 29,52 33.5,37 21,28 36.5,28" fill="#c8a800"/>
+        <circle cx="40" cy="40" r="7" fill="#c0392b" stroke="#ffd700" stroke-width="1.5"/>
+      </svg>
+      <div class="footer-org">Công an phường Thuận Hóa</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Hệ thống</div>
+      <ul class="footer-links">
+        <li>Tiếp nhận phản ánh</li>
+        <li>Hướng dẫn dịch vụ công phổ biến</li>
+        <li>Đăng ký tạm trú trực tuyến</li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Kết nối với chúng tôi</div>
+      <div class="fc-item">
+        <div class="fc-ico"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+        <div><div class="fc-lbl">Email:</div><div class="fc-val">conganphuongthuanhoa@gmail.com</div></div>
       </div>
-      <div>
-        <div class="footer-col-title">Hệ thống</div>
-        <ul class="footer-links">
-          <li>Tiếp nhận phản ánh</li>
-          <li>Hướng dẫn đăng ký công dịch vụ phổ biến</li>
-          <li>Đăng ký tạm trú trực tuyến</li>
-        </ul>
+      <div class="fc-item">
+        <div class="fc-ico"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+        <div><div class="fc-lbl">Trụ sở:</div><div class="fc-val">138 Trần Phú, P. Thuận Hóa, TP. Huế</div></div>
       </div>
-      <div>
-        <div class="footer-col-title">Kết nối với chúng tôi</div>
-        <div class="footer-contact-item">
-          <div class="contact-icon">
-            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
-          </div>
-          <div>
-            <div style="font-size:11px;color:#aaa;">Email:</div>
-            <div>conganphuongthuanhoa@gmail.com</div>
-          </div>
-        </div>
-        <div class="footer-contact-item">
-          <div class="contact-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-          </div>
-          <div>
-            <div style="font-size:11px;color:#aaa;">Địa chỉ:</div>
-            <div>138 Trần Phú, P. Thuận Hòa, TP. Huế</div>
-          </div>
-        </div>
-        <div class="footer-contact-item">
-          <div class="contact-icon">
-            <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
-          </div>
-          <div>
-            <div style="font-size:11px;color:#aaa;">Số điện thoại:</div>
-            <div>0234 3823 530</div>
-          </div>
-        </div>
+      <div class="fc-item">
+        <div class="fc-ico"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.32.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.01L6.6 10.8z"/></svg></div>
+        <div><div class="fc-lbl">Số điện thoại:</div><div class="fc-val">0234 3823 530</div></div>
       </div>
     </div>
-    <div class="footer-bottom">
-      Website được xây dựng và phát triển bởi <span>CHI</span>
-    </div>
+  </div>
+  <div class="footer-bottom">
+    Website được xây dựng và phát triển bởi <span>CHI</span>
   </div>
 </footer>
 
 <script>
-  // Tab switching - main
-  document.querySelectorAll('.tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-    });
-  });
-
-  // Step tabs
-  document.querySelectorAll('.step-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.step-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-    });
-  });
+function switchStep(idx) {
+  document.querySelectorAll('.step-tab').forEach((t,i) => t.classList.toggle('active', i===idx));
+  document.querySelectorAll('.step-panel').forEach((p,i) => p.classList.toggle('active', i===idx));
+}
+function switchMethod(el) {
+  document.querySelectorAll('.method-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+function copyLink() {
+  const inp = document.getElementById('linkInput');
+  inp.select(); inp.setSelectionRange(0,999);
+  try { document.execCommand('copy'); } catch(e) {}
+  const btn = inp.nextElementSibling;
+  const orig = btn.innerHTML;
+  btn.innerHTML = '<svg viewBox="0 0 24 24"><path fill="#4caf50" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>';
+  setTimeout(() => btn.innerHTML = orig, 1500);
+}
 </script>
 </body>
 </html>
