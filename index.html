@@ -7,1095 +7,694 @@
 <meta property="og:title" content="Cấp chứng nhận đăng ký xe trực tuyến - Công an Phường Mỹ Thượng" />
 <meta property="og:image" content="https://tamtru.vndpv.vn/logo.png" />
 <meta property="og:type" content="website" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          red: { primary: '#c0392b', dark: '#a93226', light: '#fdecea' },
+          cream: { DEFAULT: '#fdf3d0', dark: '#f5e8b0' },
+        },
+        fontFamily: { sans: ['Be Vietnam Pro', 'Arial', 'sans-serif'] }
+      }
+    }
+  }
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: Arial, sans-serif; font-size: 14px; color: #333; background: #fff; }
-a { text-decoration: none; color: inherit; }
+  body { font-family: 'Be Vietnam Pro', Arial, sans-serif; }
+  .bg-cream { background-color: #fdf3d0; }
+  .bg-red-primary { background-color: #c0392b; }
+  .text-red-primary { color: #c0392b; }
+  .border-red-primary { border-color: #c0392b; }
+  .hover\:bg-red-dark:hover { background-color: #a93226; }
 
-/* ===== HEADER ===== */
-.header {
-  background: #fff;
-  border-bottom: 1px solid #e0e0e0;
-  position: sticky; top: 0; z-index: 100;
-}
-.header-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 40px;
-  display: flex;
-  align-items: center;
-  height: 66px;
-  gap: 16px;
-}
-.header-logo { height: 46px; width: 46px; flex-shrink: 0; }
-.nav { display: flex; align-items: center; gap: 10px; flex: 1; }
-.nav-tab {
-  font-size: 13px; color: #555; font-weight: 500;
-  white-space: nowrap; cursor: pointer;
-  border: 1.5px solid #ccc;
-  border-radius: 20px; padding: 6px 16px;
-  background: #fff; transition: all 0.18s;
-  line-height: 1.4;
-}
-.nav-tab.active { color: #c0392b; border-color: #c0392b; background: #fff; }
-.nav-tab:not(.active):hover { background: #f5f5f5; border-color: #bbb; color: #333; }
+  /* Step tab active */
+  .step-tab.active { background-color: #c0392b; color: #fff; border-color: #c0392b; }
+  .step-tab:not(.active):hover { background-color: #ebebeb; }
 
-.hotline-btn {
-  margin-left: auto;
-  background: #c0392b;
-  color: #fff;
-  border: none;
-  border-radius: 28px;
-  padding: 10px 20px;
-  font-size: 13px;
-  font-weight: bold;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.hotline-btn .hl-label { font-size: 11px; font-weight: normal; opacity: 0.85; line-height: 1; }
-.hotline-btn .hl-num { font-size: 16px; font-weight: bold; line-height: 1.2; letter-spacing: 0.5px; }
+  /* Accordion */
+  .accordion-body { display: none; }
+  .accordion-body.open { display: block; }
+  .acc-arrow { transition: transform 0.2s; }
+  .accordion-header.open .acc-arrow { transform: rotate(180deg); color: #c0392b; }
+  .accordion-header.open { background-color: #fdecea; }
 
-/* ===== PAGE SECTIONS ===== */
-.page-section { display: none; }
-.page-section.active { display: block; }
+  /* Step panel */
+  .step-panel { display: none; }
+  .step-panel.active { display: block; }
 
-/* ===== MAIN ===== */
-.main { max-width: 1100px; margin: 0 auto; padding: 32px 40px 60px; }
+  /* Page section */
+  .page-section { display: none; }
+  .page-section.active { display: block; }
 
-/* ===== PAGE TITLE ===== */
-.page-title-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
-.title-icon {
-  width: 36px; height: 36px;
-  background: #c0392b;
-  border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; margin-top: 3px;
-}
-.title-icon svg { width: 20px; height: 20px; fill: #fff; }
-.page-title { font-size: 23px; font-weight: bold; color: #111; line-height: 1.35; }
-.page-subtitle { font-size: 14px; color: #555; margin-bottom: 24px; padding-left: 48px; }
-.page-subtitle strong { color: #c0392b; font-style: italic; }
+  /* Nav tab active */
+  .nav-bar-tab.active { background: rgba(255,255,255,0.18); }
 
-/* ===== LINK CARD ===== */
-.link-card {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 18px 22px;
-  margin-bottom: 30px;
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-}
-.link-card-title { font-size: 13px; font-weight: bold; color: #222; margin-bottom: 4px; }
-.link-card-label { font-size: 12px; color: #999; margin-bottom: 10px; }
-.link-row { display: flex; align-items: center; gap: 8px; }
-.link-input {
-  flex: 1;
-  background: #f5f5f5;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  padding: 10px 14px;
-  font-size: 14px;
-  color: #444;
-  outline: none;
-}
-.icon-btn {
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  border: 1px solid #ddd;
-  background: #f5f5f5;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; flex-shrink: 0;
-  transition: background 0.15s;
-}
-.icon-btn:hover { background: #e8e8e8; }
-.icon-btn.red { background: #c0392b; border-color: #c0392b; }
-.icon-btn.red:hover { background: #a93226; }
-.icon-btn svg { width: 18px; height: 18px; }
+  /* Scrollbar for nav on mobile */
+  .nav-scroll::-webkit-scrollbar { height: 0; }
 
-/* ===== STEP SECTION ===== */
-.step-section-title { font-size: 15px; font-weight: bold; color: #222; margin-bottom: 12px; }
-.step-tabs { display: flex; }
-.step-tab {
-  flex: 1;
-  padding: 11px 0;
-  text-align: center;
-  font-size: 13px;
-  font-weight: bold;
-  cursor: pointer;
-  border: 1px solid #ddd;
-  background: #f5f5f5;
-  color: #666;
-  border-right: none;
-  transition: all 0.15s;
-}
-.step-tab:last-child { border-right: 1px solid #ddd; }
-.step-tab.active { background: #c0392b; color: #fff; border-color: #c0392b; }
-.step-tab:not(.active):hover { background: #ebebeb; }
+  /* Image placeholder */
+  .img-placeholder {
+    background: #eee; border: 1px dashed #ccc; border-radius: 6px;
+    min-height: 160px; display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 6px; font-size: 12px; color: #aaa;
+  }
 
-/* ===== STEP PANELS ===== */
-.step-panel {
-  display: none;
-  border: 1px solid #e0e0e0;
-  border-top: none;
-  padding: 26px 26px 20px;
-  background: #fff;
-  margin-bottom: 22px;
-}
-.step-panel.active { display: block; }
-.step-heading { font-size: 14px; font-weight: bold; color: #222; margin-bottom: 14px; }
-.step-list { list-style: none; padding-left: 0; margin-bottom: 12px; }
-.step-list li {
-  font-size: 13px; color: #333;
-  margin-bottom: 9px;
-  padding-left: 18px;
-  position: relative;
-  line-height: 1.7;
-}
-.step-list li::before { content: "•"; position: absolute; left: 0; color: #c0392b; font-size: 16px; line-height: 1.4; }
-.step-text { font-size: 13px; color: #333; line-height: 1.7; margin-bottom: 8px; }
-
-/* ===== SUB-STEP ===== */
-.sub-steps { margin-top: 6px; }
-.sub-step {
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-  margin-bottom: 20px;
-}
-.sub-step-num {
-  width: 26px; height: 26px;
-  background: #c0392b;
-  color: #fff;
-  border-radius: 50%;
-  font-size: 12px;
-  font-weight: bold;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-.sub-step-content { flex: 1; }
-.sub-step-title { font-size: 13px; font-weight: bold; color: #222; margin-bottom: 5px; }
-.sub-step-desc { font-size: 13px; color: #555; line-height: 1.65; }
-
-/* ===== STEP IMAGE AREA ===== */
-.step-img-wrap {
-  background: #fdf8ec;
-  border: 1px solid #e8d5a3;
-  border-radius: 8px;
-  padding: 16px 20px 14px;
-  margin-top: 18px;
-  margin-bottom: 8px;
-}
-.simg-title-bar {
-  font-size: 12px;
-  font-weight: bold;
-  color: #c0392b;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.step-img-grid { display: grid; gap: 10px; }
-.step-img-grid.cols-2 { grid-template-columns: 1fr 1fr; }
-.step-img-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
-.step-img-grid.cols-1 { grid-template-columns: 1fr; }
-
-.img-item { position: relative; }
-.img-item img { width: 100%; border-radius: 5px; border: 1px solid #ddd; display: block; }
-.img-caption { text-align: center; font-size: 11px; color: #999; margin-top: 5px; font-style: italic; }
-.img-placeholder {
-  width: 100%; min-height: 160px;
-  background: #eee; border-radius: 5px;
-  border: 1px dashed #ccc;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px; color: #aaa;
-  flex-direction: column; gap: 6px;
-}
-.img-placeholder .ph-icon { font-size: 28px; }
-
-/* ===== NOTE BOX ===== */
-.note-box {
-  background: #e8f4fd;
-  border: 1px solid #b6d9f5;
-  border-radius: 6px;
-  padding: 14px 18px;
-  margin-top: 20px;
-  display: flex; gap: 10px; align-items: flex-start;
-}
-.note-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
-.note-title { font-size: 13px; font-weight: bold; color: #333; margin-bottom: 6px; }
-.note-list { list-style: none; padding-left: 0; }
-.note-list li {
-  font-size: 13px; color: #333;
-  margin-bottom: 5px; padding-left: 16px;
-  position: relative; line-height: 1.6;
-}
-.note-list li::before { content: "•"; position: absolute; left: 0; }
-
-/* tag nhãn */
-.tag {
-  display: inline-block;
-  background: #fff3cd;
-  border: 1px solid #ffc107;
-  color: #856404;
-  border-radius: 4px;
-  font-size: 11px;
-  padding: 1px 7px;
-  font-weight: bold;
-  margin-left: 4px;
-  vertical-align: middle;
-}
-.tag.red { background: #fdecea; border-color: #e74c3c; color: #c0392b; }
-.tag.green { background: #e8f5e9; border-color: #4caf50; color: #2e7d32; }
-
-/* ===== RED DIVIDER ===== */
-.red-divider { height: 6px; background: #c0392b; margin-top: 30px; }
-
-/* ===== FOOTER ===== */
-footer {
-  background: linear-gradient(180deg, #4a0000 0%, #1a0000 100%);
-  color: #ccc;
-  padding: 36px 0 0;
-}
-.footer-inner {
-  max-width: 1100px; margin: 0 auto; padding: 0 40px;
-  display: grid; grid-template-columns: 1.6fr 1fr 1.6fr;
-  gap: 40px; margin-bottom: 28px;
-}
-.footer-logo-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; }
-.footer-org { font-size: 13px; font-weight: bold; color: #fff; text-transform: uppercase; }
-.footer-col-title { font-size: 13px; font-weight: bold; color: #f5c518; margin-bottom: 14px; text-transform: uppercase; }
-.footer-links { list-style: none; }
-.footer-links li {
-  margin-bottom: 10px; display: flex;
-  align-items: flex-start; gap: 8px;
-  font-size: 13px; color: #ccc;
-}
-.footer-links li::before { content: "›"; color: #c0392b; font-size: 18px; line-height: 1.1; flex-shrink: 0; }
-.fc-item { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 14px; }
-.fc-ico {
-  width: 26px; height: 26px; border-radius: 50%;
-  background: #c0392b;
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-}
-.fc-ico svg { width: 13px; height: 13px; fill: #fff; }
-.fc-lbl { font-size: 11px; color: #f5c518; margin-bottom: 2px; }
-.fc-val { font-size: 13px; color: #ccc; }
-.footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.08);
-  text-align: center; padding: 12px 0;
-  font-size: 12px; color: #777;
-}
-.footer-bottom span { color: #e74c3c; font-weight: bold; }
-
-/* ===== SECTION 2 — THỦ TỤC TẠI CÔNG AN PHƯỜNG ===== */
-.tthc-banner {
-  background: linear-gradient(135deg, #7b0000 0%, #c0392b 100%);
-  border-radius: 10px;
-  padding: 20px 28px;
-  margin-bottom: 24px;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  color: #fff;
-}
-.tthc-banner-icon { font-size: 38px; flex-shrink: 0; }
-.tthc-banner-title { font-size: 18px; font-weight: bold; margin-bottom: 4px; }
-.tthc-banner-sub { font-size: 13px; opacity: 0.88; line-height: 1.5; }
-.tthc-badge {
-  margin-left: auto;
-  background: rgba(255,255,255,0.15);
-  border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 8px;
-  padding: 10px 16px;
-  text-align: center;
-  flex-shrink: 0;
-}
-.tthc-badge-main { font-size: 13px; font-weight: bold; line-height: 1.5; }
-.tthc-badge-sub { font-size: 11px; opacity: 0.8; margin-top: 2px; }
-
-/* Poster image */
-.poster-wrap {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  overflow: hidden;
-  margin-bottom: 26px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-}
-.poster-wrap img {
-  width: 100%;
-  display: block;
-}
-
-/* Accordion */
-.accordion-list { margin-bottom: 10px; }
-.accordion-item {
-  border: 1px solid #e0e0e0;
-  border-radius: 7px;
-  margin-bottom: 10px;
-  overflow: hidden;
-}
-.accordion-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 18px;
-  background: #fff;
-  cursor: pointer;
-  user-select: none;
-  transition: background 0.15s;
-}
-.accordion-header:hover { background: #fafafa; }
-.accordion-header.open { background: #fdecea; }
-.acc-num {
-  width: 28px; height: 28px;
-  background: #c0392b;
-  color: #fff;
-  border-radius: 50%;
-  font-size: 13px;
-  font-weight: bold;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.acc-title { font-size: 14px; font-weight: bold; color: #111; flex: 1; }
-.acc-arrow {
-  font-size: 12px; color: #888;
-  transition: transform 0.2s;
-  flex-shrink: 0;
-}
-.accordion-header.open .acc-arrow { transform: rotate(180deg); color: #c0392b; }
-.accordion-body {
-  display: none;
-  padding: 18px 22px 20px;
-  border-top: 1px solid #f0e6e6;
-  background: #fffafa;
-}
-.accordion-body.open { display: block; }
-
-/* Sub-section label inside accordion */
-.acc-section-label {
-  font-size: 12px;
-  font-weight: bold;
-  color: #c0392b;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 8px;
-  margin-top: 14px;
-}
-.acc-section-label:first-child { margin-top: 0; }
-
-.hs-list { list-style: none; padding-left: 0; margin-bottom: 8px; }
-.hs-list li {
-  font-size: 13px; color: #333;
-  padding: 6px 0 6px 20px;
-  position: relative;
-  border-bottom: 1px dashed #f0e0e0;
-  line-height: 1.6;
-}
-.hs-list li:last-child { border-bottom: none; }
-.hs-list li::before {
-  content: "✓";
-  position: absolute; left: 0;
-  color: #c0392b; font-size: 12px;
-  line-height: 1.8;
-}
-
-.warning-box {
-  background: #fff8e1;
-  border: 1px solid #ffe082;
-  border-radius: 6px;
-  padding: 12px 16px;
-  margin-top: 14px;
-  font-size: 13px;
-  color: #5d4037;
-  line-height: 1.65;
-}
-.warning-box strong { color: #e65100; }
-
-/* thu-hoi special style */
-.acc-num.gray { background: #888; }
-
-@media (max-width: 768px) {
-  .header-inner { padding: 0 16px; }
-  .main { padding: 16px 16px 40px; }
-  .footer-inner { grid-template-columns: 1fr; padding: 0 16px; }
-  .step-img-grid.cols-2,
-  .step-img-grid.cols-3 { grid-template-columns: 1fr; }
-  .tthc-banner { flex-direction: column; text-align: center; }
-  .tthc-badge { margin-left: 0; }
-  .nav-tab { font-size: 12px; padding: 5px 10px; }
-}
+  /* Convection animation for footer decorative */
+  @keyframes fadeInUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+  .fade-in { animation: fadeInUp 0.4s ease both; }
 </style>
 </head>
-<body>
+<body class="bg-cream text-gray-800 text-sm">
 
-<!-- HEADER -->
-<div class="header">
-  <div class="header-inner">
-    <img class="header-logo" src="https://tamtru.vndpv.vn/logo.png" alt="Quốc Huy">
-    <nav class="nav">
-      <div class="nav-tab active" onclick="switchPage(0)">Đăng ký cấp biển số xe qua Dịch vụ công</div>
-      <div class="nav-tab" onclick="switchPage(1)">📋 Hướng dẫn hồ sơ thủ tục</div>
-    </nav>
-    <button class="hotline-btn">
-      <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:#fff;flex-shrink:0;">
+<!-- ===== HEADER (sticky, gộp nav vào trong) ===== -->
+<header class="bg-cream sticky top-0 z-50 shadow-sm">
+
+  <!-- Top bar -->
+  <div class="max-w-6xl mx-auto px-4 sm:px-8 py-3 flex items-center justify-between gap-4">
+    <!-- Brand -->
+    <div class="flex items-center gap-3 min-w-0">
+      <img src="https://tamtru.vndpv.vn/logo.png" alt="Quốc Huy"
+        class="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 rounded-full object-cover">
+      <div class="min-w-0">
+        <div class="text-red-primary font-bold uppercase text-sm sm:text-base leading-tight">Công an phường</div>
+        <div class="text-red-primary font-bold uppercase text-sm sm:text-base leading-tight">Mỹ Thượng</div>
+      </div>
+    </div>
+    <!-- Hotline -->
+    <a href="tel:02343979001"
+      class="flex-shrink-0 flex items-center gap-2 bg-red-primary hover:bg-red-dark text-white rounded-xl px-3 py-2 sm:px-4 transition-colors">
+      <svg viewBox="0 0 24 24" class="w-4 h-4 fill-white flex-shrink-0">
         <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.32.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.01L6.6 10.8z"/>
       </svg>
-      <div>
-        <div class="hl-label">Hỗ trợ:</div>
-        <div class="hl-num">1900 0368</div>
+      <div class="text-left">
+        <div class="text-xs opacity-80 leading-none">Hỗ trợ:</div>
+        <div class="font-bold text-sm sm:text-base leading-tight tracking-wide">0234 3979001</div>
       </div>
-    </button>
+    </a>
   </div>
-</div>
 
-<!-- ===================== PAGE 0: ĐĂNG KÝ TRỰC TUYẾN ===================== -->
+  <!-- Divider -->
+  <div class="h-px bg-red-primary opacity-30"></div>
+
+  <!-- Nav bar đỏ — NAM TRONG HEADER để sticky theo -->
+  <nav class="bg-red-primary">
+    <div class="max-w-6xl mx-auto px-0 sm:px-4 flex nav-scroll overflow-x-auto">
+      <button class="nav-bar-tab active flex-shrink-0 text-white text-xs sm:text-sm font-semibold px-4 sm:px-6 py-3 border-r border-white/20 hover:bg-white/10 transition-colors whitespace-nowrap flex items-center gap-2"
+        onclick="switchPage(0)">
+        🏠 <span class="hidden xs:inline">Hướng dẫn</span> đăng ký, cấp biển số trực tuyến
+      </button>
+      <button class="nav-bar-tab flex-shrink-0 text-white text-xs sm:text-sm font-semibold px-4 sm:px-6 py-3 hover:bg-white/10 transition-colors whitespace-nowrap flex items-center gap-2"
+        onclick="switchPage(1)">
+        📋 Hướng dẫn hồ sơ thủ tục
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- ===== PAGE 0: ĐĂNG KÝ TRỰC TUYẾN ===== -->
 <div class="page-section active" id="page-0">
-<div class="main">
+<main class="max-w-6xl mx-auto px-4 sm:px-8 py-8 pb-16">
 
-  <div class="page-title-row">
-    <div class="title-icon">
-      <svg viewBox="0 0 24 24"><path d="M18 4h-2V2h-2v2H10V2H8v2H6C4.9 4 4 4.9 4 6v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 18H6V10h12v12zm0-14H6V6h2v2h2V6h4v2h2V6h2v2z"/></svg>
+  <!-- Page title -->
+  <div class="flex items-start gap-3 mb-2">
+    <div class="w-9 h-9 bg-red-primary rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+      <svg viewBox="0 0 24 24" class="w-5 h-5 fill-white">
+        <path d="M18 4h-2V2h-2v2H10V2H8v2H6C4.9 4 4 4.9 4 6v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 18H6V10h12v12zm0-14H6V6h2v2h2V6h4v2h2V6h2v2z"/>
+      </svg>
     </div>
-    <h1 class="page-title">Hướng dẫn cấp chứng nhận đăng ký xe trực tuyến</h1>
+    <h1 class="text-xl sm:text-2xl font-bold text-gray-900 leading-snug">
+      Hướng dẫn cấp chứng nhận đăng ký xe trực tuyến
+    </h1>
   </div>
-  <p class="page-subtitle">Thực hiện toàn bộ thủ tục trực tuyến tại <strong>dichvucong.bocongan.gov.vn</strong> — không cần đến trực tiếp cơ quan công an.</p>
+  <p class="text-gray-500 mb-6 pl-12">
+    Thực hiện toàn bộ thủ tục trực tuyến tại
+    <strong class="text-red-primary italic">dichvucong.bocongan.gov.vn</strong> — không cần đến trực tiếp cơ quan công an.
+  </p>
 
-  <div class="link-card">
-    <div class="link-card-title">CỔNG DỊCH VỤ CÔNG BỘ CÔNG AN</div>
-    <div class="link-card-label">Truy cập tại địa chỉ:</div>
-    <div class="link-row">
-      <input class="link-input" id="linkInput" type="text" value="https://dichvucong.bocongan.gov.vn" readonly>
-      <button class="icon-btn" onclick="copyLink()" title="Sao chép">
-        <svg viewBox="0 0 24 24"><path fill="#777" d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+  <!-- Link card -->
+  <div class="bg-white border border-gray-200 rounded-xl p-4 sm:p-5 mb-8 shadow-sm">
+    <div class="font-bold text-gray-800 text-sm mb-1">CỔNG DỊCH VỤ CÔNG BỘ CÔNG AN</div>
+    <div class="text-xs text-gray-400 mb-3">Truy cập tại địa chỉ:</div>
+    <div class="flex items-center gap-2">
+      <input id="linkInput" type="text" value="https://dichvucong.bocongan.gov.vn" readonly
+        class="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-600 outline-none min-w-0">
+      <button onclick="copyLink()" title="Sao chép"
+        class="w-10 h-10 rounded-full border border-gray-200 bg-gray-50 hover:bg-gray-100 flex items-center justify-center flex-shrink-0 transition-colors">
+        <svg viewBox="0 0 24 24" class="w-5 h-5 fill-gray-500">
+          <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+        </svg>
       </button>
-      <button class="icon-btn red" onclick="window.open('https://dichvucong.bocongan.gov.vn','_blank')" title="Mở liên kết">
-        <svg viewBox="0 0 24 24"><path fill="#fff" d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+      <button onclick="window.open('https://dichvucong.bocongan.gov.vn','_blank')" title="Mở liên kết"
+        class="w-10 h-10 rounded-full bg-red-primary hover:bg-red-dark flex items-center justify-center flex-shrink-0 transition-colors">
+        <svg viewBox="0 0 24 24" class="w-5 h-5 fill-white">
+          <path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+        </svg>
       </button>
     </div>
   </div>
 
-  <div class="step-section-title">📋 Các bước thực hiện</div>
-  <div class="step-tabs">
-    <div class="step-tab active" onclick="switchStep(0)">Bước 1</div>
-    <div class="step-tab"       onclick="switchStep(1)">Bước 2</div>
-    <div class="step-tab"       onclick="switchStep(2)">Bước 3</div>
-    <div class="step-tab"       onclick="switchStep(3)">Bước 4</div>
-    <div class="step-tab"       onclick="switchStep(4)">Bước 5</div>
+  <!-- Step tabs -->
+  <div class="font-bold text-gray-800 mb-3 text-sm">📋 Các bước thực hiện</div>
+  <div class="flex border border-gray-200 rounded-t-lg overflow-x-auto">
+    <button class="step-tab active flex-1 min-w-[72px] py-3 text-xs sm:text-sm font-bold text-center border-r border-gray-200 bg-gray-50 text-gray-500 transition-all whitespace-nowrap px-2" onclick="switchStep(0)">Bước 1</button>
+    <button class="step-tab flex-1 min-w-[72px] py-3 text-xs sm:text-sm font-bold text-center border-r border-gray-200 bg-gray-50 text-gray-500 transition-all whitespace-nowrap px-2" onclick="switchStep(1)">Bước 2</button>
+    <button class="step-tab flex-1 min-w-[72px] py-3 text-xs sm:text-sm font-bold text-center border-r border-gray-200 bg-gray-50 text-gray-500 transition-all whitespace-nowrap px-2" onclick="switchStep(2)">Bước 3</button>
+    <button class="step-tab flex-1 min-w-[72px] py-3 text-xs sm:text-sm font-bold text-center border-r border-gray-200 bg-gray-50 text-gray-500 transition-all whitespace-nowrap px-2" onclick="switchStep(3)">Bước 4</button>
+    <button class="step-tab flex-1 min-w-[72px] py-3 text-xs sm:text-sm font-bold text-center bg-gray-50 text-gray-500 transition-all whitespace-nowrap px-2" onclick="switchStep(4)">Bước 5</button>
   </div>
 
   <!-- BƯỚC 1 -->
-  <div class="step-panel active" id="panel-0">
-    <div class="step-heading">🔐 Bước 1: Đăng nhập Cổng dịch vụ công Bộ Công An</div>
-    <div class="sub-steps">
-      <div class="sub-step">
-        <div class="sub-step-num">1</div>
-        <div class="sub-step-content">
-          <div class="sub-step-title">Truy cập website</div>
-          <div class="sub-step-desc">Mở trình duyệt và vào địa chỉ <a href="https://dichvucong.bocongan.gov.vn" target="_blank" style="color:#1565c0;">dichvucong.bocongan.gov.vn</a>. Tại trang chủ, nhấn nút <strong>"Đăng nhập"</strong>.</div>
-        </div>
-      </div>
-      <div class="step-img-wrap">
-        <div class="simg-title-bar">🖼 Minh họa — Trang chủ &amp; nút Đăng nhập</div>
-        <div class="step-img-grid cols-2">
-          <div class="img-item">
-            <img src="media/image1.png" alt="Trang chủ" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>🖥️</div><div>Ảnh minh họa 1<br>Trang chủ cổng DVCBCA</div></div>'">
-            <div class="img-caption">Giao diện trang chủ</div>
-          </div>
-          <div class="img-item">
-            <img src="media/image2.png" alt="Chọn đăng nhập" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>🔑</div><div>Ảnh minh họa 2<br>Chọn phương thức đăng nhập</div></div>'">
-            <div class="img-caption">Chọn phương thức đăng nhập</div>
-          </div>
-        </div>
-      </div>
-      <div class="sub-step">
-        <div class="sub-step-num">2</div>
-        <div class="sub-step-content">
-          <div class="sub-step-title">Chọn hình thức đăng nhập</div>
-          <div class="sub-step-desc">Chọn một trong hai cách:
-            <ul class="step-list" style="margin-top:6px;">
-              <li>Nhập <strong>mã định danh</strong> và <strong>mật khẩu</strong> tài khoản VNeID.</li>
-              <li>Mở ứng dụng <strong>VNeID</strong> trên điện thoại và <strong>quét mã QR</strong> để đăng nhập nhanh.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="step-img-wrap">
-        <div class="simg-title-bar">🖼 Minh họa — Màn hình đăng nhập VNeID</div>
-        <div class="step-img-grid cols-1">
-          <div class="img-item">
-            <img src="media/image3.png" alt="Đăng nhập VNeID" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>📱</div><div>Ảnh minh họa 3<br>Màn hình nhập mã định danh / quét QR</div></div>'">
-            <div class="img-caption">Đăng nhập bằng mã định danh hoặc quét QR qua VNeID</div>
-          </div>
-        </div>
-      </div>
-      <div class="sub-step">
-        <div class="sub-step-num">3</div>
-        <div class="sub-step-content">
-          <div class="sub-step-title">Vào mục Thủ tục hành chính</div>
-          <div class="sub-step-desc">Sau khi đăng nhập thành công, trên thanh công cụ phía trên, nhấn vào <strong>"Thủ tục hành chính"</strong>.</div>
-        </div>
-      </div>
-      <div class="step-img-wrap">
-        <div class="simg-title-bar">🖼 Minh họa — Chọn Thủ tục hành chính</div>
-        <div class="step-img-grid cols-1">
-          <div class="img-item">
-            <img src="media/image4.png" alt="Thủ tục hành chính" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>📋</div><div>Ảnh minh họa 4<br>Thanh menu Thủ tục hành chính</div></div>'">
-            <div class="img-caption">Chọn "Thủ tục hành chính" trên thanh menu</div>
-          </div>
-        </div>
-      </div>
-      <div class="sub-step">
-        <div class="sub-step-num">4</div>
-        <div class="sub-step-content">
-          <div class="sub-step-title">Tìm kiếm thủ tục &amp; chọn nơi nộp hồ sơ</div>
-          <div class="sub-step-desc">Tìm kiếm thủ tục <strong>"Đăng ký, cấp biển số xe lần đầu..."</strong> trong danh sách. Chọn đúng <strong>tỉnh/thành phố</strong> nơi bạn muốn đăng ký, sau đó nhấn <strong>"Nộp hồ sơ"</strong>.</div>
-        </div>
-      </div>
-      <div class="step-img-wrap">
-        <div class="simg-title-bar">🖼 Minh họa — Tìm thủ tục &amp; nộp hồ sơ</div>
-        <div class="step-img-grid cols-2">
-          <div class="img-item">
-            <img src="media/image5.png" alt="Tìm kiếm" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>🔍</div><div>Ảnh minh họa 5<br>Tìm thủ tục cấp biển số xe</div></div>'">
-            <div class="img-caption">Tìm kiếm tên thủ tục</div>
-          </div>
-          <div class="img-item">
-            <img src="media/image6.png" alt="Nộp hồ sơ" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>📤</div><div>Ảnh minh họa 6<br>Nhấn Nộp hồ sơ</div></div>'">
-            <div class="img-caption">Nhấn "Nộp hồ sơ" để tiếp tục</div>
-          </div>
+  <div class="step-panel active bg-white border border-gray-200 border-t-0 rounded-b-xl p-5 sm:p-7 mb-6" id="panel-0">
+    <div class="font-bold text-gray-800 mb-5">🔐 Bước 1: Đăng nhập Cổng dịch vụ công Bộ Công An</div>
+
+    <!-- Sub step -->
+    <div class="flex gap-3 mb-5">
+      <div class="w-7 h-7 bg-red-primary text-white rounded-full text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">1</div>
+      <div>
+        <div class="font-bold text-sm text-gray-800 mb-1">Truy cập website</div>
+        <div class="text-sm text-gray-600 leading-relaxed">Mở trình duyệt và vào địa chỉ
+          <a href="https://dichvucong.bocongan.gov.vn" target="_blank" class="text-blue-700 hover:underline">dichvucong.bocongan.gov.vn</a>.
+          Tại trang chủ, nhấn nút <strong>"Đăng nhập"</strong>.
         </div>
       </div>
     </div>
-    <div class="note-box">
-      <div class="note-icon">💡</div>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-5">
+      <div class="text-xs font-bold text-red-primary uppercase tracking-wide mb-3">🖼 Minh họa — Trang chủ &amp; nút Đăng nhập</div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <img src="media/image1.png" alt="Trang chủ" class="w-full rounded border border-gray-200"
+            onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><span style=\'font-size:24px\'>🖥️</span><div>Ảnh minh họa 1<br>Trang chủ cổng DVCBCA</div></div>'">
+          <div class="text-center text-xs text-gray-400 mt-1 italic">Giao diện trang chủ</div>
+        </div>
+        <div>
+          <img src="media/image2.png" alt="Chọn đăng nhập" class="w-full rounded border border-gray-200"
+            onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><span style=\'font-size:24px\'>🔑</span><div>Ảnh minh họa 2<br>Chọn phương thức đăng nhập</div></div>'">
+          <div class="text-center text-xs text-gray-400 mt-1 italic">Chọn phương thức đăng nhập</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex gap-3 mb-5">
+      <div class="w-7 h-7 bg-red-primary text-white rounded-full text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">2</div>
       <div>
-        <div class="note-title">Lưu ý</div>
-        <ul class="note-list">
-          <li>Bạn cần có tài khoản <strong>VNeID mức 2</strong> (đã xác thực sinh trắc học) hoặc tài khoản Cổng dịch vụ công để thực hiện.</li>
-          <li>Nếu chưa có tài khoản VNeID, hãy đến cơ quan Công an gần nhất để kích hoạt trước khi nộp hồ sơ trực tuyến.</li>
+        <div class="font-bold text-sm text-gray-800 mb-1">Chọn hình thức đăng nhập</div>
+        <div class="text-sm text-gray-600 leading-relaxed">Chọn một trong hai cách:
+          <ul class="mt-2 space-y-1 pl-4">
+            <li class="relative pl-3 before:content-['•'] before:absolute before:left-0 before:text-red-primary">Nhập <strong>mã định danh</strong> và <strong>mật khẩu</strong> tài khoản VNeID.</li>
+            <li class="relative pl-3 before:content-['•'] before:absolute before:left-0 before:text-red-primary">Mở ứng dụng <strong>VNeID</strong> trên điện thoại và <strong>quét mã QR</strong> để đăng nhập nhanh.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-5">
+      <div class="text-xs font-bold text-red-primary uppercase tracking-wide mb-3">🖼 Minh họa — Màn hình đăng nhập VNeID</div>
+      <img src="media/image3.png" alt="Đăng nhập VNeID" class="w-full rounded border border-gray-200"
+        onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><span style=\'font-size:24px\'>📱</span><div>Ảnh minh họa 3<br>Màn hình nhập mã định danh / quét QR</div></div>'">
+      <div class="text-center text-xs text-gray-400 mt-1 italic">Đăng nhập bằng mã định danh hoặc quét QR qua VNeID</div>
+    </div>
+
+    <div class="flex gap-3 mb-5">
+      <div class="w-7 h-7 bg-red-primary text-white rounded-full text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">3</div>
+      <div>
+        <div class="font-bold text-sm text-gray-800 mb-1">Vào mục Thủ tục hành chính</div>
+        <div class="text-sm text-gray-600 leading-relaxed">Sau khi đăng nhập thành công, trên thanh công cụ phía trên, nhấn vào <strong>"Thủ tục hành chính"</strong>.</div>
+      </div>
+    </div>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-5">
+      <div class="text-xs font-bold text-red-primary uppercase tracking-wide mb-3">🖼 Minh họa — Chọn Thủ tục hành chính</div>
+      <img src="media/image4.png" alt="Thủ tục hành chính" class="w-full rounded border border-gray-200"
+        onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><span style=\'font-size:24px\'>📋</span><div>Ảnh minh họa 4</div></div>'">
+      <div class="text-center text-xs text-gray-400 mt-1 italic">Chọn "Thủ tục hành chính" trên thanh menu</div>
+    </div>
+
+    <div class="flex gap-3 mb-5">
+      <div class="w-7 h-7 bg-red-primary text-white rounded-full text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">4</div>
+      <div>
+        <div class="font-bold text-sm text-gray-800 mb-1">Tìm kiếm thủ tục &amp; chọn nơi nộp hồ sơ</div>
+        <div class="text-sm text-gray-600 leading-relaxed">Tìm kiếm thủ tục <strong>"Đăng ký, cấp biển số xe lần đầu..."</strong>, sau đó chọn <em>"Đăng ký xe lần đầu trực tuyến toàn trình đối với xe sản xuất lắp ráp trong nước"</em>. Chọn đúng <strong>tỉnh/thành phố</strong>, sau đó nhấn <strong>"Nộp hồ sơ"</strong>.</div>
+      </div>
+    </div>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-5">
+      <div class="text-xs font-bold text-red-primary uppercase tracking-wide mb-3">🖼 Minh họa — Tìm thủ tục &amp; nộp hồ sơ</div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <img src="media/image5.png" alt="Tìm kiếm" class="w-full rounded border border-gray-200"
+            onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><span style=\'font-size:24px\'>🔍</span><div>Ảnh minh họa 5</div></div>'">
+          <div class="text-center text-xs text-gray-400 mt-1 italic">Tìm kiếm tên thủ tục</div>
+        </div>
+        <div>
+          <img src="media/image6.png" alt="Nộp hồ sơ" class="w-full rounded border border-gray-200"
+            onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><span style=\'font-size:24px\'>📤</span><div>Ảnh minh họa 6</div></div>'">
+          <div class="text-center text-xs text-gray-400 mt-1 italic">Nhấn "Nộp hồ sơ" để tiếp tục</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Note box -->
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 flex gap-3">
+      <span class="text-lg flex-shrink-0 mt-0.5">💡</span>
+      <div>
+        <div class="font-bold text-sm text-gray-800 mb-2">Lưu ý</div>
+        <ul class="space-y-1.5">
+          <li class="text-sm text-gray-700 relative pl-3 before:content-['•'] before:absolute before:left-0">Bạn cần có tài khoản <strong>VNeID mức 2</strong> (đã xác thực sinh trắc học) để thực hiện.</li>
+          <li class="text-sm text-gray-700 relative pl-3 before:content-['•'] before:absolute before:left-0">Nếu chưa có tài khoản VNeID, hãy đến cơ quan Công an gần nhất để kích hoạt trước.</li>
         </ul>
       </div>
     </div>
   </div>
 
   <!-- BƯỚC 2 -->
-  <div class="step-panel" id="panel-1">
-    <div class="step-heading">📝 Bước 2: Lựa chọn thủ tục và xác nhận thông tin</div>
-    <p class="step-text">Hệ thống sẽ hiển thị màn hình lựa chọn thủ tục. Chọn các thông tin phù hợp với trường hợp của bạn (loại xe, đối tượng đăng ký,...). Kiểm tra lại thông tin, sau đó nhấn <strong>"Đồng ý và tiếp tục"</strong> để sang bước tiếp theo.</p>
-    <div class="step-img-wrap">
-      <div class="simg-title-bar">🖼 Minh họa — Màn hình lựa chọn thủ tục</div>
-      <div class="step-img-grid cols-1">
-        <div class="img-item">
-          <img src="media/image7.png" alt="Lựa chọn thủ tục" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>📋</div><div>Ảnh minh họa 7<br>Màn hình lựa chọn thủ tục</div></div>'">
-          <div class="img-caption">Chọn các thông tin tương ứng và nhấn "Đồng ý và tiếp tục"</div>
-        </div>
-      </div>
+  <div class="step-panel bg-white border border-gray-200 border-t-0 rounded-b-xl p-5 sm:p-7 mb-6" id="panel-1">
+    <div class="font-bold text-gray-800 mb-4">📝 Bước 2: Lựa chọn thủ tục và xác nhận thông tin</div>
+    <p class="text-sm text-gray-600 leading-relaxed mb-4">Hệ thống sẽ hiển thị màn hình lựa chọn thủ tục. Chọn các thông tin phù hợp với trường hợp của bạn (loại xe, đối tượng đăng ký,...). Kiểm tra lại thông tin, sau đó nhấn <strong>"Đồng ý và tiếp tục"</strong> để sang bước tiếp theo.</p>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-5">
+      <div class="text-xs font-bold text-red-primary uppercase tracking-wide mb-3">🖼 Minh họa — Màn hình lựa chọn thủ tục</div>
+      <img src="media/image7.png" alt="Lựa chọn thủ tục" class="w-full rounded border border-gray-200"
+        onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><span style=\'font-size:24px\'>📋</span><div>Ảnh minh họa 7</div></div>'">
+      <div class="text-center text-xs text-gray-400 mt-1 italic">Chọn các thông tin tương ứng và nhấn "Đồng ý và tiếp tục"</div>
     </div>
-    <div class="note-box">
-      <div class="note-icon">💡</div>
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 flex gap-3">
+      <span class="text-lg flex-shrink-0 mt-0.5">💡</span>
       <div>
-        <div class="note-title">Lưu ý</div>
-        <ul class="note-list">
-          <li>Chọn đúng loại thủ tục để hệ thống hiển thị đúng biểu mẫu và yêu cầu giấy tờ.</li>
-          <li>Nếu không chắc nên chọn mục nào, hãy liên hệ đường dây hỗ trợ để được hướng dẫn.</li>
+        <div class="font-bold text-sm text-gray-800 mb-2">Lưu ý</div>
+        <ul class="space-y-1.5">
+          <li class="text-sm text-gray-700 relative pl-3 before:content-['•'] before:absolute before:left-0">Chọn đúng loại thủ tục để hệ thống hiển thị đúng biểu mẫu và yêu cầu giấy tờ.</li>
+          <li class="text-sm text-gray-700 relative pl-3 before:content-['•'] before:absolute before:left-0">Nếu không chắc nên chọn mục nào, hãy liên hệ đường dây hỗ trợ để được hướng dẫn.</li>
         </ul>
       </div>
     </div>
   </div>
 
   <!-- BƯỚC 3 -->
-  <div class="step-panel" id="panel-2">
-    <div class="step-heading">📄 Bước 3: Nộp hồ sơ trực tuyến</div>
-    <div class="sub-steps">
-      <div class="sub-step">
-        <div class="sub-step-num">1</div>
-        <div class="sub-step-content">
-          <div class="sub-step-title">Nhập số khung / số máy &amp; tra cứu thông tin</div>
-          <div class="sub-step-desc">Điền đầy đủ thông tin xe (số khung, số máy,...), sau đó nhấn <strong>"Tra cứu"</strong> để hệ thống tự động lấy thông tin chủ xe và thông tin xe từ cơ sở dữ liệu.</div>
-        </div>
+  <div class="step-panel bg-white border border-gray-200 border-t-0 rounded-b-xl p-5 sm:p-7 mb-6" id="panel-2">
+    <div class="font-bold text-gray-800 mb-5">📄 Bước 3: Nộp hồ sơ trực tuyến</div>
+
+    <!-- Sub steps 1-7 (condensed pattern) -->
+    <div id="step3-substeps">
+      <!-- 1 -->
+      <div class="flex gap-3 mb-4">
+        <div class="w-7 h-7 bg-red-primary text-white rounded-full text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">1</div>
+        <div><div class="font-bold text-sm mb-1">Nhập số khung / số máy &amp; tra cứu thông tin</div>
+        <div class="text-sm text-gray-600 leading-relaxed">Điền đầy đủ thông tin xe (số khung, số máy,...), sau đó nhấn <strong>"Tra cứu"</strong> để hệ thống tự động lấy thông tin chủ xe và thông tin xe.</div></div>
       </div>
-      <div class="step-img-wrap">
-        <div class="simg-title-bar">🖼 Minh họa — Tra cứu thông tin xe</div>
-        <div class="step-img-grid cols-1">
-          <div class="img-item">
-            <img src="media/image8.png" alt="Tra cứu" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>🔍</div><div>Ảnh minh họa 8<br>Nhập thông tin &amp; tra cứu</div></div>'">
-            <div class="img-caption">Điền thông tin và nhấn "Tra cứu"</div>
-          </div>
-        </div>
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-5">
+        <div class="text-xs font-bold text-red-primary uppercase tracking-wide mb-2">🖼 Tra cứu thông tin xe</div>
+        <img src="media/image8.png" class="w-full rounded border border-gray-200" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><span style=\'font-size:24px\'>🔍</span><div>Ảnh minh họa 8</div></div>'">
       </div>
-      <div class="sub-step">
-        <div class="sub-step-num">2</div>
-        <div class="sub-step-content">
-          <div class="sub-step-title">Kiểm tra &amp; hoàn chỉnh thông tin chủ xe</div>
-          <div class="sub-step-desc">Rà soát kỹ thông tin cá nhân của chủ xe. Nếu có sai sót, hãy chỉnh sửa trực tiếp trên biểu mẫu. <span class="tag red">* Bắt buộc</span> — các trường có dấu sao đỏ không được bỏ trống.</div>
-        </div>
+      <!-- 2 -->
+      <div class="flex gap-3 mb-4">
+        <div class="w-7 h-7 bg-red-primary text-white rounded-full text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">2</div>
+        <div><div class="font-bold text-sm mb-1">Kiểm tra &amp; hoàn chỉnh thông tin chủ xe</div>
+        <div class="text-sm text-gray-600 leading-relaxed">Rà soát kỹ thông tin cá nhân. Các trường có dấu <span class="bg-red-100 text-red-primary text-xs font-bold px-1.5 py-0.5 rounded border border-red-300">* Bắt buộc</span> không được bỏ trống.</div></div>
       </div>
-      <div class="step-img-wrap">
-        <div class="simg-title-bar">🖼 Minh họa — Thông tin chủ xe</div>
-        <div class="step-img-grid cols-1">
-          <div class="img-item">
-            <img src="media/image9.png" alt="Thông tin chủ xe" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>👤</div><div>Ảnh minh họa 9<br>Phần thông tin chủ xe</div></div>'">
-            <div class="img-caption">Kiểm tra và bổ sung thông tin chủ xe nếu cần</div>
-          </div>
-        </div>
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-5">
+        <img src="media/image9.png" class="w-full rounded border border-gray-200" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><span style=\'font-size:24px\'>👤</span><div>Ảnh minh họa 9</div></div>'">
       </div>
-      <div class="sub-step">
-        <div class="sub-step-num">3</div>
-        <div class="sub-step-content">
-          <div class="sub-step-title">Kiểm tra thông tin nộp lệ phí trước bạ</div>
-          <div class="sub-step-desc">Thông tin lệ phí trước bạ sẽ được tự động điền từ kết quả tra cứu ở trên. Kiểm tra lại để đảm bảo chính xác.</div>
-        </div>
+      <!-- 3 -->
+      <div class="flex gap-3 mb-4">
+        <div class="w-7 h-7 bg-red-primary text-white rounded-full text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">3</div>
+        <div><div class="font-bold text-sm mb-1">Kiểm tra thông tin nộp lệ phí trước bạ</div>
+        <div class="text-sm text-gray-600 leading-relaxed">Thông tin lệ phí trước bạ sẽ được tự động điền từ kết quả tra cứu. Kiểm tra lại để đảm bảo chính xác.</div></div>
       </div>
-      <div class="step-img-wrap">
-        <div class="simg-title-bar">🖼 Minh họa — Lệ phí trước bạ</div>
-        <div class="step-img-grid cols-1">
-          <div class="img-item">
-            <img src="media/image10.png" alt="Lệ phí trước bạ" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>💰</div><div>Ảnh minh họa 10<br>Thông tin lệ phí trước bạ</div></div>'">
-            <div class="img-caption">Thông tin lệ phí trước bạ được tự động điền</div>
-          </div>
-        </div>
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-5">
+        <img src="media/image10.png" class="w-full rounded border border-gray-200" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><span style=\'font-size:24px\'>💰</span><div>Ảnh minh họa 10</div></div>'">
       </div>
-      <div class="sub-step">
-        <div class="sub-step-num">4</div>
-        <div class="sub-step-content">
-          <div class="sub-step-title">Nếu có biển số đấu giá <span class="tag">Tùy chọn</span></div>
-          <div class="sub-step-desc">Trường hợp chủ xe đã trúng đấu giá biển số, hãy <strong>tích chọn ô "Là biển số đấu giá"</strong> để hệ thống xử lý đúng quy trình.</div>
-        </div>
+      <!-- 4 -->
+      <div class="flex gap-3 mb-4">
+        <div class="w-7 h-7 bg-red-primary text-white rounded-full text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">4</div>
+        <div><div class="font-bold text-sm mb-1">Nếu có biển số đấu giá <span class="bg-yellow-100 text-yellow-700 text-xs font-bold px-1.5 py-0.5 rounded border border-yellow-300">Tùy chọn</span></div>
+        <div class="text-sm text-gray-600 leading-relaxed">Trường hợp chủ xe đã trúng đấu giá biển số, hãy <strong>tích chọn ô "Là biển số đấu giá"</strong> để hệ thống xử lý đúng quy trình.</div></div>
       </div>
-      <div class="step-img-wrap">
-        <div class="simg-title-bar">🖼 Minh họa — Ô chọn biển số đấu giá</div>
-        <div class="step-img-grid cols-1">
-          <div class="img-item">
-            <img src="media/image11.png" alt="Biển số đấu giá" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>🏷️</div><div>Ảnh minh họa 11<br>Ô tích biển số đấu giá</div></div>'">
-            <div class="img-caption">Tích chọn nếu là biển số đấu giá</div>
-          </div>
-        </div>
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-5">
+        <img src="media/image11.png" class="w-full rounded border border-gray-200" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><span style=\'font-size:24px\'>🏷️</span><div>Ảnh minh họa 11</div></div>'">
       </div>
-      <div class="sub-step">
-        <div class="sub-step-num">5</div>
-        <div class="sub-step-content">
-          <div class="sub-step-title">Chọn hình thức nhận kết quả</div>
-          <div class="sub-step-desc">Chọn một trong hai cách nhận kết quả:
-            <ul class="step-list" style="margin-top:6px;">
-              <li><strong>Nhận trực tiếp</strong> tại cơ quan Công an.</li>
-              <li><strong>Nhận qua bưu chính</strong> (Dịch vụ bưu chính công ích).</li>
-            </ul>
-            Sau đó điền đầy đủ thông tin người nhận kết quả.
-          </div>
-        </div>
+      <!-- 5 -->
+      <div class="flex gap-3 mb-4">
+        <div class="w-7 h-7 bg-red-primary text-white rounded-full text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">5</div>
+        <div><div class="font-bold text-sm mb-1">Chọn hình thức nhận kết quả</div>
+        <div class="text-sm text-gray-600 leading-relaxed">Chọn <strong>Nhận trực tiếp</strong> tại cơ quan Công an hoặc <strong>Nhận qua bưu chính</strong> (Dịch vụ bưu chính công ích). Sau đó điền thông tin người nhận.</div></div>
       </div>
-      <div class="step-img-wrap">
-        <div class="simg-title-bar">🖼 Minh họa — Hình thức nhận kết quả</div>
-        <div class="step-img-grid cols-1">
-          <div class="img-item">
-            <img src="media/image12.png" alt="Nhận kết quả" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>📬</div><div>Ảnh minh họa 12<br>Chọn hình thức nhận kết quả</div></div>'">
-            <div class="img-caption">Chọn hình thức nhận và điền thông tin người nhận</div>
-          </div>
-        </div>
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-5">
+        <img src="media/image12.png" class="w-full rounded border border-gray-200" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><span style=\'font-size:24px\'>📬</span><div>Ảnh minh họa 12</div></div>'">
       </div>
-      <div class="sub-step">
-        <div class="sub-step-num">6</div>
-        <div class="sub-step-content">
-          <div class="sub-step-title">Xác nhận &amp; nộp hồ sơ</div>
-          <div class="sub-step-desc">Nhấn <strong>"Đồng ý và tiếp tục"</strong>. Kiểm tra lại toàn bộ thông tin lần cuối, nhập <strong>mã xác nhận</strong>, tích chọn <em>"Tôi xin chịu trách nhiệm trước pháp luật về lời khai trên"</em>, rồi nhấn <strong>"Nộp hồ sơ"</strong>.</div>
-        </div>
+      <!-- 6 -->
+      <div class="flex gap-3 mb-4">
+        <div class="w-7 h-7 bg-red-primary text-white rounded-full text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">6</div>
+        <div><div class="font-bold text-sm mb-1">Xác nhận &amp; nộp hồ sơ</div>
+        <div class="text-sm text-gray-600 leading-relaxed">Nhấn <strong>"Đồng ý và tiếp tục"</strong>. Kiểm tra lại thông tin lần cuối, nhập <strong>mã xác nhận</strong>, tích chọn cam kết, rồi nhấn <strong>"Nộp hồ sơ"</strong>.</div></div>
       </div>
-      <div class="step-img-wrap">
-        <div class="simg-title-bar">🖼 Minh họa — Xác nhận &amp; nộp hồ sơ</div>
-        <div class="step-img-grid cols-1">
-          <div class="img-item">
-            <img src="media/image13.png" alt="Xác nhận nộp" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>✅</div><div>Ảnh minh họa 13<br>Màn hình xác nhận nộp hồ sơ</div></div>'">
-            <div class="img-caption">Nhập mã xác nhận và nhấn "Nộp hồ sơ"</div>
-          </div>
-        </div>
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-5">
+        <img src="media/image13.png" class="w-full rounded border border-gray-200" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><span style=\'font-size:24px\'>✅</span><div>Ảnh minh họa 13</div></div>'">
       </div>
-      <div class="sub-step">
-        <div class="sub-step-num">7</div>
-        <div class="sub-step-content">
-          <div class="sub-step-title">Lưu lại số hồ sơ</div>
-          <div class="sub-step-desc">Sau khi nộp thành công, hệ thống sẽ hiển thị <strong>số hồ sơ</strong> và gửi thông báo qua <strong>email/SMS</strong>. <span class="tag green">Quan trọng</span> — hãy lưu lại số hồ sơ để tra cứu tiến độ xử lý.</div>
-        </div>
+      <!-- 7 -->
+      <div class="flex gap-3 mb-4">
+        <div class="w-7 h-7 bg-red-primary text-white rounded-full text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">7</div>
+        <div><div class="font-bold text-sm mb-1">Lưu lại số hồ sơ <span class="bg-green-100 text-green-700 text-xs font-bold px-1.5 py-0.5 rounded border border-green-300">Quan trọng</span></div>
+        <div class="text-sm text-gray-600 leading-relaxed">Sau khi nộp thành công, hệ thống sẽ hiển thị <strong>số hồ sơ</strong> và gửi thông báo qua <strong>email/SMS</strong>. Hãy lưu lại để tra cứu tiến độ.</div></div>
       </div>
-      <div class="step-img-wrap">
-        <div class="simg-title-bar">🖼 Minh họa — Nộp hồ sơ thành công</div>
-        <div class="step-img-grid cols-1">
-          <div class="img-item">
-            <img src="media/image14.png" alt="Thành công" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>🎉</div><div>Ảnh minh họa 14<br>Thông báo nộp hồ sơ thành công</div></div>'">
-            <div class="img-caption">Thông báo nộp hồ sơ thành công — lưu lại số hồ sơ</div>
-          </div>
-        </div>
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-5">
+        <img src="media/image14.png" class="w-full rounded border border-gray-200" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><span style=\'font-size:24px\'>🎉</span><div>Ảnh minh họa 14</div></div>'">
       </div>
     </div>
-    <div class="note-box">
-      <div class="note-icon">💡</div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 flex gap-3">
+      <span class="text-lg flex-shrink-0 mt-0.5">💡</span>
       <div>
-        <div class="note-title">Lưu ý</div>
-        <ul class="note-list">
-          <li>Thông tin khai báo phải trùng khớp với hồ sơ xe gốc. Sai sót có thể khiến hồ sơ bị từ chối.</li>
-          <li>Kiểm tra kỹ địa chỉ email và số điện thoại để nhận thông báo đúng.</li>
+        <div class="font-bold text-sm mb-2">Lưu ý</div>
+        <ul class="space-y-1.5">
+          <li class="text-sm text-gray-700 relative pl-3 before:content-['•'] before:absolute before:left-0">Thông tin khai báo phải trùng khớp với hồ sơ xe gốc.</li>
+          <li class="text-sm text-gray-700 relative pl-3 before:content-['•'] before:absolute before:left-0">Kiểm tra kỹ địa chỉ email và số điện thoại để nhận thông báo đúng.</li>
         </ul>
       </div>
     </div>
   </div>
 
   <!-- BƯỚC 4 -->
-  <div class="step-panel" id="panel-3">
-    <div class="step-heading">🔔 Bước 4: Theo dõi hồ sơ &amp; thanh toán lệ phí</div>
-    <div class="sub-steps">
-      <div class="sub-step">
-        <div class="sub-step-num">1</div>
-        <div class="sub-step-content">
-          <div class="sub-step-title">Vào mục Quản lý hồ sơ</div>
-          <div class="sub-step-desc">Truy cập lại cổng dịch vụ công, chọn <strong>"Thông tin cá nhân"</strong> rồi chọn <strong>"Quản lý hồ sơ đã nộp"</strong> để xem danh sách hồ sơ.</div>
+  <div class="step-panel bg-white border border-gray-200 border-t-0 rounded-b-xl p-5 sm:p-7 mb-6" id="panel-3">
+    <div class="font-bold text-gray-800 mb-5">🔔 Bước 4: Theo dõi hồ sơ &amp; thanh toán lệ phí</div>
+
+    <div class="flex gap-3 mb-4">
+      <div class="w-7 h-7 bg-red-primary text-white rounded-full text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">1</div>
+      <div><div class="font-bold text-sm mb-1">Vào mục Quản lý hồ sơ</div>
+      <div class="text-sm text-gray-600 leading-relaxed">Chọn <strong>"Thông tin cá nhân"</strong> rồi chọn <strong>"Quản lý hồ sơ đã nộp"</strong> để xem danh sách hồ sơ.</div></div>
+    </div>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-5">
+      <img src="media/image15.png" class="w-full rounded border border-gray-200" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><span style=\'font-size:24px\'>📁</span><div>Ảnh minh họa 15</div></div>'">
+    </div>
+
+    <div class="flex gap-3 mb-4">
+      <div class="w-7 h-7 bg-red-primary text-white rounded-full text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">2</div>
+      <div><div class="font-bold text-sm mb-1">Chọn hồ sơ &amp; yêu cầu cấp biển số</div>
+      <div class="text-sm text-gray-600 leading-relaxed">Tìm hồ sơ trong danh sách, nhấn vào <strong>"Cấp biển số xe"</strong>. Hệ thống chuyển sang màn hình cấp biển số mới.</div></div>
+    </div>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-5">
+      <img src="media/image16.png" class="w-full rounded border border-gray-200" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><span style=\'font-size:24px\'>🚗</span><div>Ảnh minh họa 16</div></div>'">
+    </div>
+
+    <div class="flex gap-3 mb-4">
+      <div class="w-7 h-7 bg-red-primary text-white rounded-full text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">3</div>
+      <div><div class="font-bold text-sm mb-1">Xác nhận yêu cầu cấp biển số</div>
+      <div class="text-sm text-gray-600 leading-relaxed">Nhập <strong>mã xác nhận</strong> và nhấn <strong>"Cấp biển số mới"</strong>. Chờ thông báo kết quả qua <strong>SMS hoặc email</strong>.</div></div>
+    </div>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-5">
+      <img src="media/image17.png" class="w-full rounded border border-gray-200" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><span style=\'font-size:24px\'>🔢</span><div>Ảnh minh họa 17</div></div>'">
+    </div>
+
+    <div class="flex gap-3 mb-4">
+      <div class="w-7 h-7 bg-red-primary text-white rounded-full text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">4</div>
+      <div><div class="font-bold text-sm mb-1">Nhận thông báo &amp; thanh toán lệ phí</div>
+      <div class="text-sm text-gray-600 leading-relaxed">Khi có thông báo kết quả biển số gửi về email/SMS, nhấn vào <strong>đường link đính kèm</strong> hoặc truy cập lại cổng dịch vụ để thanh toán. Nhấn <strong>"Thanh toán trực tuyến"</strong>.</div></div>
+    </div>
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-5">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <img src="media/image18.png" class="w-full rounded border border-gray-200" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><span style=\'font-size:24px\'>📲</span><div>Ảnh minh họa 18</div></div>'">
+          <div class="text-center text-xs text-gray-400 mt-1 italic">Thông báo qua SMS/email</div>
         </div>
-      </div>
-      <div class="step-img-wrap">
-        <div class="simg-title-bar">🖼 Minh họa — Quản lý hồ sơ đã nộp</div>
-        <div class="step-img-grid cols-1">
-          <div class="img-item">
-            <img src="media/image15.png" alt="Quản lý hồ sơ" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>📁</div><div>Ảnh minh họa 15<br>Màn hình quản lý hồ sơ</div></div>'">
-            <div class="img-caption">Chọn "Quản lý hồ sơ đã nộp"</div>
-          </div>
-        </div>
-      </div>
-      <div class="sub-step">
-        <div class="sub-step-num">2</div>
-        <div class="sub-step-content">
-          <div class="sub-step-title">Chọn hồ sơ &amp; yêu cầu cấp biển số</div>
-          <div class="sub-step-desc">Tìm hồ sơ biển số xe trong danh sách, nhấn vào <strong>"Cấp biển số xe"</strong>. Hệ thống sẽ chuyển sang màn hình cấp biển số mới.</div>
-        </div>
-      </div>
-      <div class="step-img-wrap">
-        <div class="simg-title-bar">🖼 Minh họa — Chọn hồ sơ cấp biển số</div>
-        <div class="step-img-grid cols-1">
-          <div class="img-item">
-            <img src="media/image16.png" alt="Cấp biển số" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>🚗</div><div>Ảnh minh họa 16<br>Nhấn Cấp biển số xe</div></div>'">
-            <div class="img-caption">Nhấn "Cấp biển số xe" trong danh sách hồ sơ</div>
-          </div>
-        </div>
-      </div>
-      <div class="sub-step">
-        <div class="sub-step-num">3</div>
-        <div class="sub-step-content">
-          <div class="sub-step-title">Xác nhận yêu cầu cấp biển số</div>
-          <div class="sub-step-desc">Nhập <strong>mã xác nhận</strong> và nhấn <strong>"Cấp biển số mới"</strong>. Hệ thống sẽ xác nhận thành công và bạn chờ thông báo kết quả qua <strong>SMS hoặc email</strong>.</div>
-        </div>
-      </div>
-      <div class="step-img-wrap">
-        <div class="simg-title-bar">🖼 Minh họa — Xác nhận cấp biển số mới</div>
-        <div class="step-img-grid cols-1">
-          <div class="img-item">
-            <img src="media/image17.png" alt="Xác nhận cấp biển số" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>🔢</div><div>Ảnh minh họa 17<br>Xác nhận cấp biển số mới</div></div>'">
-            <div class="img-caption">Nhập mã xác nhận và nhấn "Cấp biển số mới"</div>
-          </div>
-        </div>
-      </div>
-      <div class="sub-step">
-        <div class="sub-step-num">4</div>
-        <div class="sub-step-content">
-          <div class="sub-step-title">Nhận thông báo &amp; thanh toán lệ phí</div>
-          <div class="sub-step-desc">Khi có thông báo kết quả biển số gửi về email/SMS, nhấn vào <strong>đường link đính kèm</strong> hoặc truy cập lại cổng dịch vụ để thanh toán. Nhấn <strong>"Thanh toán trực tuyến"</strong> và thực hiện theo hướng dẫn.</div>
-        </div>
-      </div>
-      <div class="step-img-wrap">
-        <div class="simg-title-bar">🖼 Minh họa — Thông báo &amp; thanh toán</div>
-        <div class="step-img-grid cols-2">
-          <div class="img-item">
-            <img src="media/image18.png" alt="Thông báo" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>📲</div><div>Ảnh minh họa 18<br>Thông báo kết quả trên điện thoại</div></div>'">
-            <div class="img-caption">Thông báo kết quả qua SMS/email</div>
-          </div>
-          <div class="img-item">
-            <img src="media/image19.png" alt="Thanh toán" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><div class=\'ph-icon\'>💳</div><div>Ảnh minh họa 19<br>Thanh toán trực tuyến</div></div>'">
-            <div class="img-caption">Nhấn "Thanh toán trực tuyến" để hoàn tất</div>
-          </div>
+        <div>
+          <img src="media/image19.png" class="w-full rounded border border-gray-200" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><span style=\'font-size:24px\'>💳</span><div>Ảnh minh họa 19</div></div>'">
+          <div class="text-center text-xs text-gray-400 mt-1 italic">Nhấn "Thanh toán trực tuyến"</div>
         </div>
       </div>
     </div>
-    <div class="note-box">
-      <div class="note-icon">💡</div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 flex gap-3">
+      <span class="text-lg flex-shrink-0 mt-0.5">💡</span>
       <div>
-        <div class="note-title">Lưu ý</div>
-        <ul class="note-list">
-          <li>Hệ thống sẽ hiển thị <strong>"Thanh toán thành công"</strong> sau khi hoàn tất. Hãy chụp màn hình lưu lại làm bằng chứng.</li>
-          <li>Nếu không nhận được thông báo sau 3–5 ngày làm việc, liên hệ cơ quan Công an để kiểm tra hồ sơ.</li>
+        <div class="font-bold text-sm mb-2">Lưu ý</div>
+        <ul class="space-y-1.5">
+          <li class="text-sm text-gray-700 relative pl-3 before:content-['•'] before:absolute before:left-0">Hệ thống sẽ hiển thị <strong>"Thanh toán thành công"</strong> sau khi hoàn tất. Hãy chụp màn hình lưu lại.</li>
+          <li class="text-sm text-gray-700 relative pl-3 before:content-['•'] before:absolute before:left-0">Nếu không nhận được thông báo sau 3–5 ngày làm việc, liên hệ cơ quan Công an để kiểm tra.</li>
         </ul>
       </div>
     </div>
   </div>
 
   <!-- BƯỚC 5 -->
-  <div class="step-panel" id="panel-4">
-    <div class="step-heading">🎯 Bước 5: Nhận kết quả — biển số xe</div>
-    <p class="step-text" style="margin-bottom:14px;">Sau khi hồ sơ được duyệt và lệ phí đã thanh toán, bạn có thể nhận biển số xe theo hình thức đã chọn:</p>
-    <div class="sub-steps">
-      <div class="sub-step">
-        <div class="sub-step-num">📬</div>
-        <div class="sub-step-content">
-          <div class="sub-step-title">Nhận qua bưu chính công ích</div>
-          <div class="sub-step-desc">Cần chuẩn bị để nộp kèm theo biển số:
-            <ul class="step-list" style="margin-top:8px;">
-              <li><strong>Phiếu kiểm tra chất lượng xuất xưởng</strong> có dán bản chà số máy, số khung.</li>
-              <li>Phiếu phải có <strong>dấu giáp lai</strong> của cơ sở sản xuất.</li>
-            </ul>
-          </div>
+  <div class="step-panel bg-white border border-gray-200 border-t-0 rounded-b-xl p-5 sm:p-7 mb-6" id="panel-4">
+    <div class="font-bold text-gray-800 mb-4">🎯 Bước 5: Nhận kết quả — biển số xe</div>
+    <p class="text-sm text-gray-600 leading-relaxed mb-5">Sau khi hồ sơ được duyệt và lệ phí đã thanh toán, bạn có thể nhận biển số xe theo hình thức đã chọn:</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <!-- Bưu chính -->
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-4">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-2xl">📬</span>
+          <div class="font-bold text-sm">Nhận qua bưu chính công ích</div>
         </div>
+        <ul class="space-y-2">
+          <li class="text-sm text-gray-600 relative pl-4 before:content-['•'] before:absolute before:left-0 before:text-red-primary"><strong>Phiếu kiểm tra chất lượng xuất xưởng</strong> có dán bản chà số máy, số khung.</li>
+          <li class="text-sm text-gray-600 relative pl-4 before:content-['•'] before:absolute before:left-0 before:text-red-primary">Phiếu phải có <strong>dấu giáp lai</strong> của cơ sở sản xuất.</li>
+        </ul>
       </div>
-      <div class="sub-step">
-        <div class="sub-step-num">🏢</div>
-        <div class="sub-step-content">
-          <div class="sub-step-title">Nhận trực tiếp tại cơ quan Công an</div>
-          <div class="sub-step-desc">Mang theo đầy đủ các giấy tờ sau khi đến:
-            <ul class="step-list" style="margin-top:8px;">
-              <li><strong>Căn cước công dân (CCCD)</strong> bản gốc.</li>
-              <li><strong>Hóa đơn mua xe</strong> từ đại lý / cơ sở bán xe.</li>
-              <li><strong>Phiếu kiểm tra chất lượng xuất xưởng</strong> (phiếu xuất xưởng).</li>
-              <li><strong>Biên lai đóng thuế trước bạ</strong>.</li>
-              <li><strong>Biên lai đóng phí cấp biển số</strong>.</li>
-            </ul>
-          </div>
+      <!-- Trực tiếp -->
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-4">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-2xl">🏢</span>
+          <div class="font-bold text-sm">Nhận trực tiếp tại Công an</div>
         </div>
+        <ul class="space-y-2">
+          <li class="text-sm text-gray-600 relative pl-4 before:content-['•'] before:absolute before:left-0 before:text-red-primary"><strong>Căn cước công dân (CCCD)</strong> bản gốc.</li>
+          <li class="text-sm text-gray-600 relative pl-4 before:content-['•'] before:absolute before:left-0 before:text-red-primary"><strong>Hóa đơn mua xe</strong> từ đại lý.</li>
+          <li class="text-sm text-gray-600 relative pl-4 before:content-['•'] before:absolute before:left-0 before:text-red-primary"><strong>Phiếu kiểm tra chất lượng xuất xưởng.</strong></li>
+          <li class="text-sm text-gray-600 relative pl-4 before:content-['•'] before:absolute before:left-0 before:text-red-primary"><strong>Biên lai đóng thuế trước bạ.</strong></li>
+          <li class="text-sm text-gray-600 relative pl-4 before:content-['•'] before:absolute before:left-0 before:text-red-primary"><strong>Biên lai đóng phí cấp biển số.</strong></li>
+        </ul>
       </div>
     </div>
-    <div class="note-box">
-      <div class="note-icon">⚠️</div>
+
+    <div class="bg-yellow-50 border border-yellow-300 rounded-lg p-4 flex gap-3">
+      <span class="text-lg flex-shrink-0 mt-0.5">⚠️</span>
       <div>
-        <div class="note-title">Nhắc nhở quan trọng</div>
-        <ul class="note-list">
-          <li>Thiếu bất kỳ giấy tờ nào trong danh sách trên, cơ quan Công an có thể từ chối trao biển số.</li>
-          <li>Phiếu xuất xưởng phải còn nguyên, không rách hoặc phai mờ thông tin.</li>
-          <li>Trường hợp ủy quyền người khác đến nhận thay, cần có thêm <strong>giấy ủy quyền có xác nhận</strong> và CCCD của người được ủy quyền.</li>
+        <div class="font-bold text-sm mb-2">Nhắc nhở quan trọng</div>
+        <ul class="space-y-1.5">
+          <li class="text-sm text-gray-700 relative pl-3 before:content-['•'] before:absolute before:left-0">Thiếu bất kỳ giấy tờ nào, cơ quan Công an có thể từ chối trao biển số.</li>
+          <li class="text-sm text-gray-700 relative pl-3 before:content-['•'] before:absolute before:left-0">Phiếu xuất xưởng phải còn nguyên, không rách hoặc phai mờ.</li>
+          <li class="text-sm text-gray-700 relative pl-3 before:content-['•'] before:absolute before:left-0">Trường hợp ủy quyền cần thêm <strong>giấy ủy quyền có xác nhận</strong> và CCCD người được ủy quyền.</li>
         </ul>
       </div>
     </div>
   </div>
 
-</div><!-- /main page-0 -->
-</div><!-- /page-section 0 -->
+</main>
+</div><!-- /page-0 -->
 
 
-<!-- ===================== PAGE 1: THỦ TỤC TẠI CÔNG AN PHƯỜNG ===================== -->
+<!-- ===== PAGE 1: THỦ TỤC TẠI CÔNG AN PHƯỜNG ===== -->
 <div class="page-section" id="page-1">
-<div class="main">
+<main class="max-w-6xl mx-auto px-4 sm:px-8 py-8 pb-16">
 
-  <div class="page-title-row">
-    <div class="title-icon">
-      <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7l5 5v11zm-3-7H9v2h6v-2zm0-4H9v2h6V9z"/></svg>
+  <!-- Page title -->
+  <div class="flex items-start gap-3 mb-2">
+    <div class="w-9 h-9 bg-red-primary rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+      <svg viewBox="0 0 24 24" class="w-5 h-5 fill-white"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7l5 5v11zm-3-7H9v2h6v-2zm0-4H9v2h6V9z"/></svg>
     </div>
-    <h1 class="page-title">Thủ tục hành chính đăng ký xe tại Công an Phường</h1>
+    <h1 class="text-xl sm:text-2xl font-bold text-gray-900 leading-snug">Thủ tục hành chính đăng ký xe tại Công an Phường</h1>
   </div>
-  <p class="page-subtitle">Nộp hồ sơ trực tiếp tại <strong>Công an Phường Mỹ Thượng</strong> — áp dụng cho các trường hợp cấp mới, sang tên, cấp lại và thu hồi.</p>
+  <p class="text-gray-500 mb-6 pl-12">Nộp hồ sơ trực tiếp tại <strong class="text-red-primary italic">Công an Phường Mỹ Thượng</strong> — áp dụng cho các trường hợp cấp mới, sang tên, cấp lại và thu hồi.</p>
 
-  <!-- Banner nổi bật -->
-  <div class="tthc-banner">
-    <div class="tthc-banner-icon">🏛️</div>
-    <div>
-      <div class="tthc-banner-title">Công an Phường Mỹ Thượng</div>
-      <div class="tthc-banner-sub">Bộ Thủ Tục Hành Chính — Đăng Ký Xe<br>Hỗ trợ người dân 24/7 · Hotline: <strong>1900 0368</strong></div>
+  <!-- Banner -->
+  <div class="bg-gradient-to-r from-red-900 to-red-primary rounded-2xl p-5 sm:p-6 mb-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+    <div class="text-4xl flex-shrink-0">🏛️</div>
+    <div class="flex-1 min-w-0">
+      <div class="text-white font-bold text-lg mb-1">Công an Phường Mỹ Thượng</div>
+      <div class="text-white/85 text-sm leading-relaxed">Bộ Thủ Tục Hành Chính — Đăng Ký Xe<br>Hỗ trợ người dân 24/7 · Hotline: <strong>0234 3979001</strong></div>
     </div>
-    <div class="tthc-badge">
-      <div class="tthc-badge-main">🗓️ Thứ Năm không hẹn</div>
-      <div class="tthc-badge-sub">Nộp trong ngày — Nhận ngay trong ngày</div>
+    <div class="bg-white/15 border border-white/30 rounded-xl px-4 py-3 text-center flex-shrink-0 w-full sm:w-auto">
+      <div class="text-white font-bold text-sm">🗓️ Thứ Năm không hẹn</div>
+      <div class="text-white/80 text-xs mt-1">Nộp trong ngày — Nhận ngay trong ngày</div>
     </div>
   </div>
 
-  <!-- Poster ảnh -->
-  <div class="step-img-wrap" style="margin-bottom:28px;">
-    <div class="simg-title-bar">🖼 Poster hướng dẫn — Bộ thủ tục hành chính đăng ký xe</div>
-    <div class="step-img-grid cols-1">
-      <div class="img-item">
-        <img src="media/image20.png" alt="Poster bộ thủ tục đăng ký xe"
-          onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\' style=\'min-height:260px\'><div class=\'ph-icon\'>🪪</div><div>Poster thủ tục đăng ký xe<br><small style=\'color:#bbb\'>Đặt file ảnh tại: media/poster-dangky.jpg</small></div></div>'">
-        <div class="img-caption">Poster chính thức — Bộ thủ tục hành chính đăng ký xe tại Công an Phường Mỹ Thượng</div>
+  <!-- Poster -->
+  <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-8">
+    <div class="text-xs font-bold text-red-primary uppercase tracking-wide mb-3">🖼 Poster hướng dẫn — Bộ thủ tục hành chính đăng ký xe</div>
+    <img src="media/image20.png" alt="Poster" class="w-full rounded-lg border border-gray-200"
+      onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\' style=\'min-height:200px\'><span style=\'font-size:32px\'>🪪</span><div>Poster thủ tục đăng ký xe</div></div>'">
+  </div>
+
+  <!-- Accordion -->
+  <div class="font-bold text-gray-800 mb-3 text-sm">📂 Chi tiết từng loại thủ tục</div>
+  <div class="space-y-3">
+
+    <!-- 1 -->
+    <div class="border border-gray-200 rounded-xl overflow-hidden">
+      <div class="accordion-header flex items-center gap-3 px-4 sm:px-5 py-4 bg-white cursor-pointer hover:bg-gray-50 transition-colors" id="acc-h-0" onclick="toggleAcc(0)">
+        <div class="w-7 h-7 bg-red-primary text-white rounded-full text-sm font-bold flex items-center justify-center flex-shrink-0">1</div>
+        <div class="font-bold text-sm text-gray-800 flex-1">Cấp mới chứng nhận đăng ký xe, biển số xe</div>
+        <span class="acc-arrow text-gray-400 text-xs flex-shrink-0">▼</span>
       </div>
-    </div>
-  </div>
-
-  <!-- Accordion 4 thủ tục -->
-  <div class="step-section-title">📂 Chi tiết từng loại thủ tục</div>
-  <div class="accordion-list">
-
-    <!-- 1. Cấp mới -->
-    <div class="accordion-item">
-      <div class="accordion-header" id="acc-h-0" onclick="toggleAcc(0)">
-        <div class="acc-num">1</div>
-        <div class="acc-title">Cấp mới chứng nhận đăng ký xe, biển số xe</div>
-        <div class="acc-arrow">▼</div>
-      </div>
-      <div class="accordion-body" id="acc-b-0">
-        <div class="acc-section-label">📋 Thành phần hồ sơ</div>
-        <ul class="hs-list">
-          <li><strong>Giấy khai đăng ký xe</strong> (mẫu ĐKX10/79)</li>
-          <li><strong>Giấy tờ của chủ xe:</strong> Định danh điện tử mức độ 2</li>
-          <li><strong>Giấy tờ của xe:</strong> Phiếu kiểm tra chất lượng xuất xưởng, Hóa đơn điện tử, Lệ phí trước bạ</li>
-          <li><strong>Phiếu kiểm tra chất lượng xuất xưởng</strong> có dán bản chà số máy, số khung — có đóng dấu giáp lai của cơ sở sản xuất</li>
+      <div class="accordion-body border-t border-red-100 bg-red-50/30 px-4 sm:px-5 py-5" id="acc-b-0">
+        <div class="text-xs font-bold text-red-primary uppercase tracking-wide mb-3">📋 Thành phần hồ sơ</div>
+        <ul class="space-y-2 mb-4">
+          <li class="flex items-start gap-2 text-sm text-gray-700"><span class="text-red-primary mt-0.5">✓</span><span><strong>Giấy khai đăng ký xe</strong> (mẫu ĐKX10/79)</span></li>
+          <li class="flex items-start gap-2 text-sm text-gray-700"><span class="text-red-primary mt-0.5">✓</span><span><strong>Giấy tờ của chủ xe:</strong> Định danh điện tử mức độ 2</span></li>
+          <li class="flex items-start gap-2 text-sm text-gray-700"><span class="text-red-primary mt-0.5">✓</span><span><strong>Giấy tờ của xe:</strong> Phiếu kiểm tra chất lượng xuất xưởng, Hóa đơn điện tử, Lệ phí trước bạ</span></li>
+          <li class="flex items-start gap-2 text-sm text-gray-700"><span class="text-red-primary mt-0.5">✓</span><span><strong>Phiếu kiểm tra chất lượng xuất xưởng</strong> có dán bản chà số máy, số khung — có đóng dấu giáp lai của cơ sở sản xuất</span></li>
         </ul>
-        <div class="warning-box">
-          💡 Thủ tục này cũng có thể thực hiện <strong>trực tuyến</strong> qua tab <em>"Đăng ký cấp biển số xe qua Dịch vụ công"</em> ở trên.
+        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm text-yellow-900">
+          💡 Thủ tục này cũng có thể thực hiện <strong>trực tuyến</strong> qua tab <em>"Hướng dẫn đăng ký cấp biển số xe qua Dịch vụ công"</em> ở trên.
         </div>
       </div>
     </div>
 
-    <!-- 2. Sang tên -->
-    <div class="accordion-item">
-      <div class="accordion-header" id="acc-h-1" onclick="toggleAcc(1)">
-        <div class="acc-num">2</div>
-        <div class="acc-title">Cấp chứng nhận đăng ký xe, biển số xe khi sang tên</div>
-        <div class="acc-arrow">▼</div>
+    <!-- 2 -->
+    <div class="border border-gray-200 rounded-xl overflow-hidden">
+      <div class="accordion-header flex items-center gap-3 px-4 sm:px-5 py-4 bg-white cursor-pointer hover:bg-gray-50 transition-colors" id="acc-h-1" onclick="toggleAcc(1)">
+        <div class="w-7 h-7 bg-red-primary text-white rounded-full text-sm font-bold flex items-center justify-center flex-shrink-0">2</div>
+        <div class="font-bold text-sm text-gray-800 flex-1">Cấp chứng nhận đăng ký xe, biển số xe khi sang tên</div>
+        <span class="acc-arrow text-gray-400 text-xs flex-shrink-0">▼</span>
       </div>
-      <div class="accordion-body" id="acc-b-1">
-        <div class="acc-section-label">a. Hồ sơ thu hồi</div>
-        <ul class="hs-list">
-          <li><strong>Giấy khai thu hồi</strong> (mẫu ĐKX11/79)</li>
-          <li><strong>Giấy tờ của chủ xe:</strong> 02 bản chà số máy, số khung</li>
-          <li><strong>Chứng từ chuyển quyền sở hữu xe</strong></li>
-          <li><strong>Chứng nhận đăng ký xe, biển số xe</strong> — trường hợp mất chứng nhận đăng ký xe phải ghi rõ lý do</li>
+      <div class="accordion-body border-t border-red-100 bg-red-50/30 px-4 sm:px-5 py-5" id="acc-b-1">
+        <div class="text-xs font-bold text-red-primary uppercase tracking-wide mb-2">a. Hồ sơ thu hồi</div>
+        <ul class="space-y-2 mb-4">
+          <li class="flex items-start gap-2 text-sm text-gray-700"><span class="text-red-primary mt-0.5">✓</span><span><strong>Giấy khai thu hồi</strong> (mẫu ĐKX11/79)</span></li>
+          <li class="flex items-start gap-2 text-sm text-gray-700"><span class="text-red-primary mt-0.5">✓</span><span><strong>Giấy tờ của chủ xe:</strong> 02 bản chà số máy, số khung</span></li>
+          <li class="flex items-start gap-2 text-sm text-gray-700"><span class="text-red-primary mt-0.5">✓</span><span><strong>Chứng từ chuyển quyền sở hữu xe</strong></span></li>
+          <li class="flex items-start gap-2 text-sm text-gray-700"><span class="text-red-primary mt-0.5">✓</span><span><strong>Chứng nhận đăng ký xe, biển số xe</strong> — trường hợp mất phải ghi rõ lý do</span></li>
         </ul>
-        <div class="acc-section-label">b. Hồ sơ đăng ký</div>
-        <ul class="hs-list">
-          <li><strong>Giấy khai đăng ký xe</strong></li>
-          <li><strong>Giấy tờ của chủ xe</strong></li>
-          <li><strong>Chứng từ chuyển quyền sở hữu xe</strong></li>
-          <li><strong>Chứng từ lệ phí trước bạ xe</strong></li>
-          <li><strong>Chứng nhận thu hồi chứng nhận đăng ký xe, biển số xe</strong></li>
+        <div class="text-xs font-bold text-red-primary uppercase tracking-wide mb-2">b. Hồ sơ đăng ký</div>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-2 text-sm text-gray-700"><span class="text-red-primary mt-0.5">✓</span><span><strong>Giấy khai đăng ký xe</strong></span></li>
+          <li class="flex items-start gap-2 text-sm text-gray-700"><span class="text-red-primary mt-0.5">✓</span><span><strong>Giấy tờ của chủ xe</strong></span></li>
+          <li class="flex items-start gap-2 text-sm text-gray-700"><span class="text-red-primary mt-0.5">✓</span><span><strong>Chứng từ chuyển quyền sở hữu xe</strong></span></li>
+          <li class="flex items-start gap-2 text-sm text-gray-700"><span class="text-red-primary mt-0.5">✓</span><span><strong>Chứng từ lệ phí trước bạ xe</strong></span></li>
+          <li class="flex items-start gap-2 text-sm text-gray-700"><span class="text-red-primary mt-0.5">✓</span><span><strong>Chứng nhận thu hồi chứng nhận đăng ký xe, biển số xe</strong></span></li>
         </ul>
       </div>
     </div>
 
-    <!-- 3. Cấp lại -->
-    <div class="accordion-item">
-      <div class="accordion-header" id="acc-h-2" onclick="toggleAcc(2)">
-        <div class="acc-num">3</div>
-        <div class="acc-title">Cấp lại chứng nhận đăng ký xe, biển số xe</div>
-        <div class="acc-arrow">▼</div>
+    <!-- 3 -->
+    <div class="border border-gray-200 rounded-xl overflow-hidden">
+      <div class="accordion-header flex items-center gap-3 px-4 sm:px-5 py-4 bg-white cursor-pointer hover:bg-gray-50 transition-colors" id="acc-h-2" onclick="toggleAcc(2)">
+        <div class="w-7 h-7 bg-red-primary text-white rounded-full text-sm font-bold flex items-center justify-center flex-shrink-0">3</div>
+        <div class="font-bold text-sm text-gray-800 flex-1">Cấp lại chứng nhận đăng ký xe, biển số xe</div>
+        <span class="acc-arrow text-gray-400 text-xs flex-shrink-0">▼</span>
       </div>
-      <div class="accordion-body" id="acc-b-2">
-        <div class="acc-section-label">📋 Thành phần hồ sơ</div>
-        <ul class="hs-list">
-          <li><strong>Giấy khai đăng ký xe</strong> (mẫu ĐKX10/79)</li>
-          <li><strong>Giấy tờ của chủ xe</strong> — sử dụng tài khoản định danh mức độ 2</li>
+      <div class="accordion-body border-t border-red-100 bg-red-50/30 px-4 sm:px-5 py-5" id="acc-b-2">
+        <div class="text-xs font-bold text-red-primary uppercase tracking-wide mb-3">📋 Thành phần hồ sơ</div>
+        <ul class="space-y-2 mb-4">
+          <li class="flex items-start gap-2 text-sm text-gray-700"><span class="text-red-primary mt-0.5">✓</span><span><strong>Giấy khai đăng ký xe</strong> (mẫu ĐKX10/79)</span></li>
+          <li class="flex items-start gap-2 text-sm text-gray-700"><span class="text-red-primary mt-0.5">✓</span><span><strong>Giấy tờ của chủ xe</strong> — sử dụng tài khoản định danh mức độ 2</span></li>
         </ul>
-        <div class="warning-box">
+        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm text-yellow-900">
           ⚠️ Áp dụng cho trường hợp chứng nhận đăng ký xe hoặc biển số xe bị <strong>mất, hỏng, hoặc phai mờ</strong>. Ghi rõ lý do trong giấy khai.
         </div>
       </div>
     </div>
 
-    <!-- 4. Thu hồi -->
-    <div class="accordion-item">
-      <div class="accordion-header" id="acc-h-3" onclick="toggleAcc(3)">
-        <div class="acc-num" style="background:#888;">4</div>
-        <div class="acc-title">Thu hồi giấy chứng nhận đăng ký xe</div>
-        <div class="acc-arrow">▼</div>
+    <!-- 4 -->
+    <div class="border border-gray-200 rounded-xl overflow-hidden">
+      <div class="accordion-header flex items-center gap-3 px-4 sm:px-5 py-4 bg-white cursor-pointer hover:bg-gray-50 transition-colors" id="acc-h-3" onclick="toggleAcc(3)">
+        <div class="w-7 h-7 bg-gray-400 text-white rounded-full text-sm font-bold flex items-center justify-center flex-shrink-0">4</div>
+        <div class="font-bold text-sm text-gray-800 flex-1">Thu hồi giấy chứng nhận đăng ký xe</div>
+        <span class="acc-arrow text-gray-400 text-xs flex-shrink-0">▼</span>
       </div>
-      <div class="accordion-body" id="acc-b-3">
-        <div class="acc-section-label">📋 Thành phần hồ sơ</div>
-        <ul class="hs-list">
-          <li><strong>Giấy khai thu hồi đăng ký</strong></li>
-          <li><strong>Biển số xe</strong></li>
-          <li><strong>Giấy chứng nhận đăng ký xe</strong> — trường hợp mất chứng nhận đăng ký xe phải ghi rõ lý do</li>
-          <li><strong>Chứng từ chuyển quyền sở hữu</strong></li>
+      <div class="accordion-body border-t border-red-100 bg-red-50/30 px-4 sm:px-5 py-5" id="acc-b-3">
+        <div class="text-xs font-bold text-red-primary uppercase tracking-wide mb-3">📋 Thành phần hồ sơ</div>
+        <ul class="space-y-2 mb-4">
+          <li class="flex items-start gap-2 text-sm text-gray-700"><span class="text-red-primary mt-0.5">✓</span><span><strong>Giấy khai thu hồi đăng ký</strong></span></li>
+          <li class="flex items-start gap-2 text-sm text-gray-700"><span class="text-red-primary mt-0.5">✓</span><span><strong>Biển số xe</strong></span></li>
+          <li class="flex items-start gap-2 text-sm text-gray-700"><span class="text-red-primary mt-0.5">✓</span><span><strong>Giấy chứng nhận đăng ký xe</strong> — trường hợp mất phải ghi rõ lý do</span></li>
+          <li class="flex items-start gap-2 text-sm text-gray-700"><span class="text-red-primary mt-0.5">✓</span><span><strong>Chứng từ chuyển quyền sở hữu</strong></span></li>
         </ul>
-        <div class="warning-box">
+        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm text-yellow-900">
           ⚠️ Thủ tục thu hồi bắt buộc thực hiện <strong>trước khi</strong> làm thủ tục sang tên hoặc chuyển nhượng xe.
         </div>
       </div>
     </div>
 
-  </div><!-- /accordion-list -->
+  </div><!-- /accordion -->
 
-  <div class="note-box" style="margin-top:10px;">
-    <div class="note-icon">📞</div>
+  <!-- Support note -->
+  <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mt-6 flex gap-3">
+    <span class="text-lg flex-shrink-0 mt-0.5">📞</span>
     <div>
-      <div class="note-title">Cần hỗ trợ thêm?</div>
-      <ul class="note-list">
-        <li>Liên hệ đường dây hỗ trợ <strong>1900 0368</strong> để được hướng dẫn trực tiếp.</li>
-        <li>Đến trực tiếp <strong>Công an Phường Mỹ Thượng</strong> vào <strong>Thứ Năm</strong> — nộp và nhận kết quả trong ngày, không cần hẹn trước.</li>
+      <div class="font-bold text-sm mb-2">Cần hỗ trợ thêm?</div>
+      <ul class="space-y-1.5">
+        <li class="text-sm text-gray-700 relative pl-3 before:content-['•'] before:absolute before:left-0">Liên hệ đường dây hỗ trợ <strong>0234 3979001</strong> để được hướng dẫn trực tiếp.</li>
+        <li class="text-sm text-gray-700 relative pl-3 before:content-['•'] before:absolute before:left-0">Đến trực tiếp <strong>Công an Phường Mỹ Thượng</strong> vào <strong>Thứ Năm</strong> — nộp và nhận kết quả trong ngày, không cần hẹn trước.</li>
       </ul>
     </div>
   </div>
 
-</div><!-- /main page-1 -->
-</div><!-- /page-section 1 -->
+</main>
+</div><!-- /page-1 -->
 
 
-<div class="red-divider"></div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-logo-wrap">
-      <img src="https://tamtru.vndpv.vn/logo.png" alt="Quốc Huy" style="width:72px;height:72px;">
-      <div class="footer-org">CÔNG AN PHƯỜNG MỸ THƯỢNG</div>
-    </div>
-    <div>
-      <div class="footer-col-title">Hệ thống</div>
-      <ul class="footer-links">
-        <li>Tiếp nhận phản ánh</li>
-        <li>Hướng dẫn dịch vụ công phổ biến</li>
-        <li>Đăng ký cấp biển số xe</li>
-        <li>Đăng ký tạm trú trực tuyến</li>
-      </ul>
-    </div>
-    <div>
-      <div class="footer-col-title">Kết nối với chúng tôi</div>
-      <div class="fc-item">
-        <div class="fc-ico"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.32.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.01L6.6 10.8z"/></svg></div>
-        <div><div class="fc-lbl">Hỗ trợ:</div><div class="fc-val">1900 0368</div></div>
+<!-- ===== FOOTER ===== -->
+<div class="h-1.5 bg-red-primary"></div>
+<footer class="bg-gradient-to-b from-red-950 to-red-950" style="background: linear-gradient(180deg,#4a0000,#1a0000);">
+  <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-8">
+      <!-- Logo -->
+      <div class="flex flex-col items-center text-center gap-3">
+        <img src="https://tamtru.vndpv.vn/logo.png" alt="Quốc Huy" class="w-16 h-16 rounded-full">
+        <div class="text-white font-bold text-sm uppercase">Công an Phường Mỹ Thượng</div>
       </div>
-      <div class="fc-item">
-        <div class="fc-ico"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
-        <div><div class="fc-lbl">Website:</div><div class="fc-val">dichvucong.bocongan.gov.vn</div></div>
+      <!-- Links -->
+      <div>
+        <div class="text-yellow-400 font-bold text-sm uppercase mb-4">Hệ thống</div>
+        <ul class="space-y-2.5">
+          <li class="flex items-start gap-2 text-gray-300 text-sm"><span class="text-red-400 text-lg leading-none">›</span>Tiếp nhận phản ánh</li>
+          <li class="flex items-start gap-2 text-gray-300 text-sm"><span class="text-red-400 text-lg leading-none">›</span>Hướng dẫn dịch vụ công phổ biến</li>
+          <li class="flex items-start gap-2 text-gray-300 text-sm"><span class="text-red-400 text-lg leading-none">›</span>Đăng ký cấp biển số xe</li>
+        </ul>
+      </div>
+      <!-- Contact -->
+      <div>
+        <div class="text-yellow-400 font-bold text-sm uppercase mb-4">Kết nối với chúng tôi</div>
+        <div class="flex items-start gap-3 mb-3">
+          <div class="w-6 h-6 bg-red-primary rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg viewBox="0 0 24 24" class="w-3 h-3 fill-white"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.32.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.01L6.6 10.8z"/></svg>
+          </div>
+          <div><div class="text-yellow-400 text-xs">Hỗ trợ:</div><div class="text-gray-300 text-sm">0234 3979001</div></div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 bg-red-primary rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg viewBox="0 0 24 24" class="w-3 h-3 fill-white"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </div>
+          <div><div class="text-yellow-400 text-xs">Website:</div><div class="text-gray-300 text-sm">dangkyxe-capmythuong.twi.vn</div></div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="footer-bottom">
-    Cổng Dịch vụ công Bộ Công An — <span>Phục vụ người dân 24/7</span>
+    <div class="border-t border-white/10 pt-4 text-center text-xs text-gray-600">
+      Cổng Dịch vụ công Bộ Công An — <span class="text-red-400 font-bold">Phục vụ người dân 24/7</span>
+    </div>
   </div>
 </footer>
 
 <script>
-// Switch between main pages (nav tabs)
 function switchPage(idx) {
-  document.querySelectorAll('.nav-tab').forEach((t, i) => t.classList.toggle('active', i === idx));
-  document.querySelectorAll('.page-section').forEach((s, i) => s.classList.toggle('active', i === idx));
+  document.querySelectorAll('.nav-bar-tab').forEach((t,i) => t.classList.toggle('active', i===idx));
+  document.querySelectorAll('.page-section').forEach((s,i) => s.classList.toggle('active', i===idx));
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Switch between step tabs (page 0)
 function switchStep(idx) {
-  document.querySelectorAll('.step-tab').forEach((t, i) => t.classList.toggle('active', i === idx));
-  document.querySelectorAll('.step-panel').forEach((p, i) => p.classList.toggle('active', i === idx));
+  document.querySelectorAll('.step-tab').forEach((t,i) => t.classList.toggle('active', i===idx));
+  document.querySelectorAll('.step-panel').forEach((p,i) => p.classList.toggle('active', i===idx));
 }
 
-// Toggle accordion (page 1)
 function toggleAcc(idx) {
-  const header = document.getElementById('acc-h-' + idx);
-  const body   = document.getElementById('acc-b-' + idx);
+  const header = document.getElementById('acc-h-'+idx);
+  const body = document.getElementById('acc-b-'+idx);
   const isOpen = body.classList.contains('open');
-  // Close all
   document.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('open'));
   document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
-  // Open clicked (if wasn't open)
-  if (!isOpen) {
-    header.classList.add('open');
-    body.classList.add('open');
-  }
+  if (!isOpen) { header.classList.add('open'); body.classList.add('open'); }
 }
 
-// Copy link
 function copyLink() {
   const inp = document.getElementById('linkInput');
-  inp.select(); inp.setSelectionRange(0, 999);
+  inp.select(); inp.setSelectionRange(0,999);
   try { document.execCommand('copy'); } catch(e) {}
   const btn = inp.nextElementSibling;
   const orig = btn.innerHTML;
-  btn.innerHTML = '<svg viewBox="0 0 24 24"><path fill="#4caf50" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>';
+  btn.innerHTML = '<svg viewBox="0 0 24 24" class="w-5 h-5 fill-green-500"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>';
   setTimeout(() => btn.innerHTML = orig, 1500);
 }
 </script>
